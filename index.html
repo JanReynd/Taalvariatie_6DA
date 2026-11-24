@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taalgarderobe – kleed je taal naar de situatie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1f2a44; --denim:#2f5d8a; --denim2:#22476b; --mustard:#e3a92b; --tomato:#e0533d; --sage:#6f9e7d; --plum:#8a5a9e; --rose:#d9707f; --teal:#2a9d9b;
+  --cream:#fbf5ea; --card:#fff; --line:#eadfcb; --muted:#6f6a7d;
+  --ok:#1f9d63; --okbg:#e1f6ea; --bad:#d9443a; --badbg:#fde6e3;
+  --r:20px; --shadow:0 2px 0 rgba(31,42,68,.06),0 14px 32px -16px rgba(31,42,68,.25);
+  --h:'Fraunces',Georgia,serif; --b:'Outfit','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--b);color:var(--ink);background:var(--cream);line-height:1.6;font-size:17px;
+  background-image:repeating-linear-gradient(45deg,rgba(47,93,138,.035) 0 2px,transparent 2px 14px)}
+h1,h2,h3,h4{font-family:var(--h);line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em}
+a{color:var(--denim);font-weight:700}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:16px;color:var(--ink)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* ---------- header: kledingrek ---------- */
+header.top{position:sticky;top:0;z-index:50;background:rgba(251,245,234,.95);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--h);font-weight:800;font-size:23px}
+.logo small{display:block;font-family:var(--b);font-weight:600;font-size:12.5px;color:var(--muted)}
+.who{font-size:14px;color:var(--muted);text-align:right}
+.who b{color:var(--ink)}
+#rack{position:relative;display:flex;justify-content:space-between;padding:6px 10px 0;margin-top:4px}
+#rack .bar{position:absolute;left:0;right:0;top:12px;height:7px;border-radius:7px;background:linear-gradient(#b9b2a3,#8d8678);box-shadow:0 2px 0 rgba(0,0,0,.08)}
+#rack .bar::before,#rack .bar::after{content:"";position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:#8d8678}
+#rack .bar::before{left:-4px}#rack .bar::after{right:-4px}
+.hanger{position:relative;z-index:1;background:none;border:0;padding:0;width:72px;display:flex;flex-direction:column;align-items:center;color:var(--muted)}
+.hanger svg{display:block;transition:transform .25s}
+.hanger .shirt{fill:#fff;stroke:#c9bfae;stroke-width:2;stroke-dasharray:4 3}
+.hanger.done .shirt{fill:var(--c);stroke:rgba(0,0,0,.2);stroke-dasharray:0}
+.hanger.cur svg{transform:translateY(3px) rotate(-6deg)}
+.hanger.cur .shirt{stroke:var(--c);stroke-width:3;stroke-dasharray:0}
+.hanger .lbl{font-size:11px;font-weight:700;line-height:1.1;text-align:center;margin-top:-2px}
+.hanger.cur .lbl{color:var(--ink)}
+.hanger .tick{font-size:11px;fill:#b5ab99;font-weight:800}.hanger.done .tick,.hanger.cur .tick{fill:#fff}.hanger.cur:not(.done) .tick{fill:var(--c)}
+.prog{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--muted);padding:6px 4px 10px}
+.prog .pb{flex:1;height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.prog .pb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--denim),var(--teal),var(--sage),var(--mustard),var(--tomato));transition:width .6s}
+@media (max-width:820px){.hanger .lbl{display:none}.hanger{width:26px}.hanger svg{width:26px;height:34px}#rack{padding:6px 2px 0}.st-head h2{font-size:27px}.label{width:58px;height:74px}.label b{font-size:24px}.card{padding:18px}.logo{font-size:20px}}
+
+/* ---------- stations ---------- */
+main{padding:26px 0 60px}
+section.station{display:none;animation:fade .35s ease}
+section.station.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.st-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.label{flex:none;position:relative;width:74px;height:92px;background:#fff;border:3px solid var(--c);border-radius:8px 8px 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.label::before{content:"";position:absolute;top:8px;width:10px;height:10px;border-radius:50%;border:3px solid var(--c);background:var(--cream)}
+.label b{font-family:var(--h);font-size:30px;color:var(--c);margin-top:12px;line-height:1}
+.label span{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.st-head h2{font-size:36px;margin:0}
+.st-head p{margin:2px 0 0;color:var(--muted);font-weight:600}
+.care{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:700;color:var(--muted);background:#fff;border:1.5px dashed var(--line);border-radius:99px;padding:3px 12px;margin-top:6px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px 26px;margin:0 0 22px;border:1px solid #f0e6d4}
+.card h3{font-size:23px}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:6px;background:var(--c,var(--denim));color:#fff;margin-bottom:10px}
+.lead{font-size:18.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+.note{border-left:5px solid var(--mustard);background:#fff5dc;padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0}
+.navbtns{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.btn{border:0;border-radius:12px;padding:12px 22px;font-weight:800;background:var(--ink);color:#fff;box-shadow:0 4px 0 #0f1526;transition:transform .1s, box-shadow .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0f1526}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+.btn.color{background:var(--c,var(--tomato));box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.btn.small{padding:8px 16px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,60px);font-weight:800}
+.hero h1 em{font-style:italic;color:var(--tomato)}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+.goals{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.goals li{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:14px;padding:12px 14px;border:2px solid var(--line)}
+.goals li b{flex:none;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;font-family:var(--h)}
+.field{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:14px}
+.field input{padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:#fff;font-size:17px}
+.field input:focus{outline:none;border-color:var(--denim)}
+details.teacher{border:2px dashed var(--line);border-radius:16px;padding:12px 18px;background:#fffdf8}
+details.teacher summary{font-weight:800;cursor:pointer}
+table.lpd{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:10px}
+table.lpd th,table.lpd td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.lpd th{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+
+/* reading */
+.reading p{margin:0 0 14px}
+.reading .al{display:flex;gap:14px}
+.reading .al>span{flex:none;width:32px;height:32px;border-radius:8px;background:var(--c,var(--denim));color:#fff;display:grid;place-items:center;font-weight:800;font-family:var(--h);margin-top:2px}
+.reading h4{font-size:19px;margin:0 0 4px}
+mark{background:linear-gradient(transparent 55%,#ffdf94 55%);padding:0 2px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.kw div{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px}
+.kw div b{display:block;font-family:var(--h);font-size:18px;color:var(--c,var(--denim))}
+figure{margin:0}
+figure.photo{border-radius:16px;overflow:hidden;background:#f3ecdf;border:1px solid var(--line)}
+figure.photo img{display:block;width:100%;height:300px;object-fit:contain;background:#fff}
+figure.photo figcaption{font-size:13.5px;padding:10px 12px;color:var(--muted)}
+figure.photo figcaption a{font-weight:600;color:var(--muted)}
+figure.photo.noimg img{display:none}
+figure.photo.noimg::before{content:"🖼️ afbeelding niet beschikbaar (offline?)";display:grid;place-items:center;height:120px;color:var(--muted);font-size:14px}
+.video{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#111;box-shadow:var(--shadow)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vlink{font-size:14px;margin-top:8px}
+
+/* exercises */
+.ex{list-style:none;padding:0;margin:0;counter-reset:q}
+.ex>li{counter-increment:q;padding:14px 0 14px 44px;border-bottom:1px dashed var(--line);position:relative}
+.ex>li:last-child{border-bottom:0}
+.ex>li::before{content:counter(q);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:8px;background:#eef3f8;color:var(--c,var(--denim));display:grid;place-items:center;font-weight:800;font-size:14px}
+.ex .p{margin-bottom:8px}
+.ex input[type=text]{padding:7px 10px;border:2px solid var(--line);border-radius:10px;min-width:150px;background:#fffdf8}
+.ex input.wide{width:100%}
+.ex select{padding:7px 10px;border:2px solid var(--line);border-radius:10px;background:#fff;max-width:100%}
+.ex textarea{width:100%;min-height:96px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:#fffdf8;resize:vertical}
+.ex input:focus,.ex select:focus,.ex textarea:focus{outline:none;border-color:var(--c,var(--denim))}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts.col{flex-direction:column;align-items:stretch}
+.opt{border:2px solid var(--line);background:#fff;border-radius:12px;padding:8px 14px;text-align:left;font-weight:600;transition:all .15s}
+.opt:hover{border-color:var(--c,var(--denim))}
+.opt.sel{border-color:var(--c,var(--denim));background:var(--c,var(--denim));color:#fff}
+.ok{border-color:var(--ok)!important;background:var(--okbg)!important;color:var(--ink)!important}
+.bad{border-color:var(--bad)!important;background:var(--badbg)!important;color:var(--ink)!important}
+.opt.right{border-color:var(--ok)!important;border-style:dashed!important}
+.expl{display:none;margin-top:8px;font-size:15px;background:#eef3f8;border-radius:10px;padding:8px 12px}
+.checked .expl{display:block}
+.model{display:none;margin-top:8px;font-size:15px;background:#eaf6ef;border-left:4px solid var(--sage);border-radius:0 10px 10px 0;padding:8px 12px}
+.checked .model{display:block}
+.wc{font-size:12.5px;color:var(--muted);margin-top:4px}
+.checkrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.fb{font-weight:800;padding:8px 14px;border-radius:99px;display:none}
+.fb.show{display:inline-block}
+.fb.good{background:var(--okbg);color:var(--ok)}
+.fb.mid{background:#fff1cf;color:#9a6700}
+.fb.low{background:var(--badbg);color:var(--bad)}
+.quote{font-family:var(--h);font-size:19px;font-style:italic}
+
+/* survey */
+table.survey{width:100%;border-collapse:collapse;font-size:15.5px}
+table.survey td,table.survey th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+table.survey th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:center}
+table.survey td.c{text-align:center}
+.sv{width:46px;height:36px;border-radius:10px;border:2px solid var(--line);background:#fff;font-weight:800;font-size:13px;color:var(--muted)}
+.sv.on{color:#fff;border-color:transparent}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:14px;font-weight:600;margin:6px 0 10px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+
+/* slider */
+.slider{background:linear-gradient(135deg,#fff,#f6efe1);border-radius:18px;padding:22px;border:2px solid var(--line)}
+.slider input[type=range]{width:100%;accent-color:var(--tomato);height:30px}
+.slider .ticks{display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:var(--muted)}
+.slider .ticks span.on{color:var(--tomato)}
+.slider .say{font-family:var(--h);font-size:clamp(21px,3vw,30px);margin:16px 0 6px;min-height:2.4em}
+.slider .desc{color:var(--muted);font-weight:600}
+
+/* order list */
+.order{list-style:none;padding:0;margin:0;display:grid;gap:8px;max-width:520px}
+.order li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 10px;font-weight:800}
+.order li .n{width:28px;height:28px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px}
+.order li .t{flex:1}
+.order li button{border:2px solid var(--line);background:#fff;border-radius:8px;width:34px;height:30px;font-weight:800}
+
+/* detective */
+.dialog{display:grid;gap:10px}
+.line{display:flex;gap:12px;align-items:flex-start}
+.line .who2{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-family:var(--h)}
+.bubble{background:#f6f1e7;border-radius:4px 16px 16px 16px;padding:10px 14px;font-size:17.5px;line-height:1.9}
+.tok{border:0;background:#fff3cf;border-bottom:3px solid var(--mustard);border-radius:6px;padding:1px 6px;font-weight:700;font-size:inherit;position:relative}
+.tok[data-c="uitspraak"]{background:#dbe8f5;border-color:var(--denim)}
+.tok[data-c="woordenschat"]{background:#e2f0e6;border-color:var(--sage)}
+.tok[data-c="woordvorm"]{background:#f6e0e4;border-color:var(--rose)}
+.tok[data-c="zinsbouw"]{background:#ece2f2;border-color:var(--plum)}
+.tok.ok{outline:3px solid var(--ok)}
+.tok.bad{outline:3px solid var(--bad)}
+.tok sup{font-size:10px;font-weight:800;margin-left:3px;opacity:.75}
+.pop{position:absolute;z-index:80;background:#fff;border-radius:14px;box-shadow:0 18px 40px -10px rgba(0,0,0,.35);padding:10px;display:none;gap:6px;flex-direction:column;min-width:190px;border:2px solid var(--line)}
+.pop.show{display:flex}
+.pop b{font-size:13px;color:var(--muted)}
+.pop button{border:0;border-radius:9px;padding:7px 10px;text-align:left;font-weight:700;color:#fff}
+.catcards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:820px){.catcards{grid-template-columns:1fr 1fr}}
+.catcards div{border-radius:16px;padding:14px;color:#fff}
+.catcards div b{display:block;font-family:var(--h);font-size:20px;margin-bottom:4px}
+.catcards div p{margin:0;font-size:14.5px}
+.catcards div em{display:block;margin-top:6px;font-size:14px;background:rgba(255,255,255,.18);border-radius:8px;padding:4px 8px;font-style:normal}
+
+/* cards with dimensions */
+.dims{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:820px){.dims{grid-template-columns:1fr 1fr}}
+.dims div{background:#fff;border:2px solid var(--line);border-top:8px solid var(--dc);border-radius:14px;padding:12px 14px;font-size:15px}
+.dims div b{display:block;font-family:var(--h);font-size:19px}
+.dims div span{font-size:28px}
+.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:820px){.triad{grid-template-columns:1fr}}
+.triad div{border-radius:16px;padding:16px;color:#fff}
+.triad b{font-family:var(--h);font-size:22px;display:block}
+.forum{display:grid;gap:10px;margin:12px 0}
+.post{background:#f3f6fb;border-radius:14px;padding:10px 14px;font-size:15.5px}
+.post small{display:block;font-weight:800;color:var(--muted);font-size:12.5px}
+.case{border:2px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;background:#fffdf8}
+
+/* check-list */
+.cl{display:grid;gap:8px}
+.cl label{display:flex;gap:10px;align-items:flex-start;background:#fff;border:2px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:600;cursor:pointer}
+.cl input{width:20px;height:20px;margin-top:2px;accent-color:var(--sage)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.links a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px;transition:transform .15s,border .15s}
+.links a:hover{transform:translateY(-3px);border-color:var(--teal)}
+.links a b{display:block;font-family:var(--h);font-size:18px}
+.links a span{font-size:13.5px;color:var(--muted);font-weight:500}
+.links a i{font-style:normal;font-size:12px;color:var(--teal);font-weight:800;letter-spacing:.05em}
+
+/* score */
+table.score{width:100%;border-collapse:collapse}
+table.score td,table.score th{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+table.score th{font-size:12.5px;text-transform:uppercase;color:var(--muted);letter-spacing:.05em}
+.minibar{height:10px;border-radius:10px;background:var(--line);overflow:hidden;min-width:90px}
+.minibar i{display:block;height:100%}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:800}
+.pill.g{background:var(--okbg);color:var(--ok)} .pill.n{background:#eee;color:var(--muted)}
+.badge{display:flex;align-items:center;gap:18px;border-radius:20px;padding:20px 24px;background:var(--denim2);color:#fff}
+.badge .big{font-family:var(--h);font-size:54px;font-weight:800;line-height:1}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;font-weight:800;z-index:99;transition:transform .35s}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.conf{position:fixed;width:10px;height:14px;z-index:98;pointer-events:none;border-radius:2px;animation:conf 1.1s ease-out forwards}
+@keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}}
+footer{border-top:2px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted);font-weight:600}
+
+#report{display:none}
+@media print{
+  body{background:#fff;font-size:11.5pt}
+  body>*:not(#report){display:none!important}
+  #report{display:block;color:#000;font-family:Arial,sans-serif}
+  #report h1{font-size:22pt;margin:0 0 4pt}
+  #report h2{font-size:14pt;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:2px solid #000;page-break-after:avoid}
+  #report h3{font-size:11.5pt;margin:10pt 0 4pt;page-break-after:avoid}
+  #report .q{margin:0 0 6pt;page-break-inside:avoid}
+  #report .q .a{margin-left:12pt;color:#222;white-space:pre-wrap}
+  #report table{width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:6pt}
+  #report td,#report th{border:1px solid #999;padding:3pt 6pt;text-align:left}
+  @page{margin:16mm}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">
+        <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#2f5d8a"/><path d="M22 9a4 4 0 1 1 4 4c-2 0-4 1-4 3v2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M22 18 8 27h28z" fill="none" stroke="#e3a92b" stroke-width="2.6" stroke-linejoin="round"/><path d="M12 27v9h20v-9" fill="#e0533d"/></svg>
+        <div>Taalgarderobe<small>kleed je taal naar de situatie</small></div>
+      </div>
+      <div class="who" id="who"></div>
+    </div>
+    <nav id="rack" aria-label="Stations"><div class="bar"></div></nav>
+    <div class="prog"><span>Voortgang</span><div class="pb"><i id="progFill"></i></div><span id="progTxt">0%</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ======== 0 PASHOKJE ======== -->
+<section class="station" data-id="start">
+  <div class="hero card">
+    <div>
+      <span class="tag" style="--c:var(--tomato)">Taalvariatie · 3de graad</span>
+      <h1>Welke taal trek jij <em>vandaag</em> aan?</h1>
+      <p class="lead">Je kiest je kleren naar de gelegenheid: een pak voor een sollicitatie, een jogging thuis in de zetel. Met taal doe je precies hetzelfde. Op deze tocht ontdek je hoe rijk het Nederlands is: van dialect tot standaardtaal, van Vlaams tot Nederlands-Nederlands, van chatbericht tot officiële mail.</p>
+      <div class="grid2" style="gap:12px;margin-top:16px">
+        <label class="field">Voornaam en naam<input id="inName" autocomplete="name" placeholder="bv. Lotte Peeters"></label>
+        <label class="field">Klas<input id="inKlas" placeholder="bv. 6 HW"></label>
+      </div>
+    </div>
+    <svg viewBox="0 0 400 330" role="img" aria-label="Illustratie: een kledingrek met kleren die elk een soort taal voorstellen">
+      <rect x="20" y="36" width="360" height="10" rx="5" fill="#8d8678"/><rect x="28" y="46" width="8" height="270" fill="#a59e90"/><rect x="364" y="46" width="8" height="270" fill="#a59e90"/><rect x="10" y="310" width="380" height="10" rx="5" fill="#8d8678"/>
+      <g font-family="Outfit,sans-serif" font-weight="800" text-anchor="middle">
+        <g transform="translate(90 40)"><path d="M0 6a6 6 0 1 1 6 6c-3 0-6 2-6 5v3" fill="none" stroke="#555" stroke-width="3"/><path d="M-38 22 0 20 38 22 50 56 32 62 30 160-30 160-32 62-50 56z" fill="#2f5d8a"/><path d="M-10 20 0 40 10 20" fill="#fff"/><path d="M-2 40 0 70 2 40z" fill="#e0533d"/><text y="120" fill="#fff" font-size="13">standaard</text><text y="137" fill="#fff" font-size="13">taal</text></g>
+        <g transform="translate(200 40)"><path d="M0 6a6 6 0 1 1 6 6c-3 0-6 2-6 5v3" fill="none" stroke="#555" stroke-width="3"/><path d="M-36 22 0 20 36 22 48 52 30 58 28 150-28 150-30 58-48 52z" fill="#e3a92b"/><path d="M-12 21q12 14 24 0" fill="none" stroke="#fff" stroke-width="3"/><text y="100" fill="#1f2a44" font-size="15">tussen</text><text y="118" fill="#1f2a44" font-size="15">taal</text></g>
+        <g transform="translate(310 40)"><path d="M0 6a6 6 0 1 1 6 6c-3 0-6 2-6 5v3" fill="none" stroke="#555" stroke-width="3"/><path d="M-34 22 0 20 34 22 44 50 28 56 28 140-28 140-28 56-44 50z" fill="#6f9e7d"/><g stroke="#fff" stroke-width="3" opacity=".55"><line x1="-28" y1="80" x2="28" y2="80"/><line x1="-28" y1="100" x2="28" y2="100"/><line x1="-28" y1="120" x2="28" y2="120"/></g><text y="72" fill="#fff" font-size="15">dialect</text></g>
+      </g>
+      <g transform="translate(150 270) rotate(-8)"><rect width="110" height="30" rx="6" fill="#fff" stroke="#e0533d" stroke-width="3"/><text x="55" y="20" text-anchor="middle" font-family="Fraunces,serif" font-weight="800" font-size="15" fill="#e0533d">past bij jou!</text></g>
+    </svg>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Na deze tocht kun je…</h3>
+    <ul class="goals">
+      <li><b style="background:var(--denim)">1</b><span>de soorten <strong>taalvariatie</strong> herkennen en benoemen: regionaal, sociaal, situationeel en etnisch.</span></li>
+      <li><b style="background:var(--mustard)">2</b><span>het <strong>continuüm</strong> van dialect tot standaardtaal uitleggen, en <strong>tussentaal</strong> herkennen aan uitspraak, woordenschat, woordvorm en zinsbouw.</span></li>
+      <li><b style="background:var(--sage)">3</b><span>uitleggen waarom het Nederlands <strong>pluricentrisch</strong> is: Belgisch-Nederlands en Nederlands-Nederlands zijn allebei correct.</span></li>
+      <li><b style="background:var(--tomato)">4</b><span>bewust de juiste taal kiezen per situatie, en een onderbouwd <strong>standpunt</strong> innemen over taalvariatie in de samenleving.</span></li>
+    </ul>
+    <div class="note"><strong>Zo werkt het:</strong> elk station is een kledingstuk aan het rek bovenaan. Werk alle oefeningen af en klik telkens op <em>Controleer</em>. Je antwoorden worden automatisch bewaard. In het laatste station bekijk je je score en exporteer je alles als pdf.</div>
+  </div>
+
+  <details class="teacher card">
+    <summary>👩‍🏫 Info voor de leraar: koppeling met het leerplan Nederlands III-Ned-da</summary>
+    <table class="lpd">
+      <tr><th>LPD</th><th>Station</th><th>Wat de leerling doet</th></tr>
+      <tr><td>LPD 1</td><td>3, 8</td><td>Onderwerp, hoofdgedachte en hoofdpunten bepalen bij lezen, kijken en luisteren (leesteksten, interview)</td></tr>
+      <tr><td>LPD 2</td><td>3, 9</td><td>Relevante informatie selecteren uit een interview, taalwebsites en een podcast</td></tr>
+      <tr><td>LPD 3</td><td>3</td><td>De leestekst samenvatten in eigen woorden</td></tr>
+      <tr><td>LPD 4</td><td>7</td><td>Een formele mail aan de directie schrijven (standaardtaal, gepast register, vaste structuur)</td></tr>
+      <tr><td>LPD 5</td><td>2</td><td>Creatief een "mismatch"-scène schrijven</td></tr>
+      <tr><td>LPD 7+</td><td>8</td><td>Een eigen standpunt over tussentaal op tv beargumenteren</td></tr>
+      <tr><td>LPD 10</td><td>1, 3, 6, 8</td><td>Het effect van dialect, tussentaal en standaardtaal op identiteit en sociale omgang illustreren</td></tr>
+      <tr><td>LPD 11</td><td>2, 7</td><td>Taalgebruik afstemmen op situatie, publiek en register</td></tr>
+      <tr><td>LPD 12</td><td>4, 5, 6</td><td>Variatie herkennen in uitspraak, woordenschat, woordvorm en zinsbouw, en Belgisch- en Nederlands-Nederlandse vormen onderscheiden</td></tr>
+      <tr><td>LPD 13</td><td>alle</td><td>Vaktaal inzetten: dialect, regiolect, tussentaal, continuüm, pluricentrisch, register, taalnorm…</td></tr>
+      <tr><td>LPD 14</td><td>4, 7, 9</td><td>Strategieën inzetten: omzetten naar standaardtaal, nalezen met een checklist, bronnen raadplegen</td></tr>
+    </table>
+    <p style="font-size:14.5px;margin:12px 0 0"><strong>Niet gedekt:</strong> LPD 6 (interactie), tenzij je het debat in station 8 en de enquête in station 1 klassikaal bespreekt, en LPD 8 en 9 (literatuur). De koppeling is gebaseerd op het leerplan Nederlands III-Ned-da (Katholiek Onderwijs Vlaanderen, versie juni 2024).</p>
+  </details>
+  <div class="navbtns"><span></span><button class="btn color" data-next>Paskamer in ➜</button></div>
+</section>
+
+<!-- ======== 1 TAALSPIEGEL ======== -->
+<section class="station" data-id="spiegel">
+  <div class="st-head" style="--c:var(--denim)"><div class="label"><b>1</b><span>maat S</span></div><div><h2>Mijn taalspiegel</h2><p>Welke taal draag jij waar?</p><span class="care">🧺 Wasvoorschrift: eerlijk invullen, geen goed of fout</span></div></div>
+  <div class="card">
+    <p class="lead">Welke taal spreek je <strong>meestal</strong> in deze situaties? Kies telkens één optie.</p>
+    <div class="legend"><span><i style="background:var(--denim)"></i>AN = Algemeen Nederlands (standaardtaal)</span><span><i style="background:var(--mustard)"></i>TT = tussentaal</span><span><i style="background:var(--sage)"></i>D = dialect</span><span><i style="background:var(--plum)"></i>AT = andere taal</span></div>
+    <div style="overflow-x:auto"><table class="survey" id="survey"></table></div>
+    <div class="checkrow"><button class="btn color" style="--c:var(--denim)" id="svCheck">Toon mijn taalspiegel</button><span class="fb" id="svFb"></span></div>
+    <div id="svChart" style="margin-top:16px"></div>
+  </div>
+  <div class="card" style="--c:var(--denim)"><span class="tag">Taalportret</span><h3>Kijk in de spiegel</h3><p>Bespreek je antwoorden daarna ook met je klasgenoten. Welke trends zie je in de klas?</p><div id="portret"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 2 ANDER JASJE ======== -->
+<section class="station" data-id="jasje">
+  <div class="st-head" style="--c:var(--mustard)"><div class="label"><b>2</b><span>maat M</span></div><div><h2>Zelfde boodschap, ander jasje</h2><p>Wie zegt wat, tegen wie, waar en wanneer?</p><span class="care">🌡️ Wasvoorschrift: altijd aanpassen aan de situatie</span></div></div>
+  <div class="card">
+    <p class="lead">Lees deze vijf uitspraken. Ze zeggen allemaal ongeveer hetzelfde: <em>dit is te duur</em>. Toch klinken ze totaal anders.</p>
+    <div class="grid2" style="gap:12px">
+      <div class="post"><small>A</small><span class="quote">“Zwaar duur, bro. Echt nie normaal.”</span></div>
+      <div class="post"><small>B</small><span class="quote">“Mijns inziens is de prijs aan de hoge kant.”</span></div>
+      <div class="post"><small>C</small><span class="quote">“Amai, da’s peperduur, zenne!”</span></div>
+      <div class="post"><small>D</small><span class="quote">“Ik vind dat erg duur.”</span></div>
+      <div class="post"><small>E</small><span class="quote">“Wij achten het gevraagde bedrag buitensporig.”</span></div>
+    </div>
+  </div>
+  <div class="card" style="--c:var(--mustard)"><span class="tag">Oefening A · koppelen</span><h3>Wie, tegen wie, waar?</h3><p>Kies bij elke uitspraak de situatie die het best past.</p><div id="jasjeA"></div></div>
+  <div class="card">
+    <span class="tag" style="--c:var(--mustard)">Uitleg</span>
+    <h3>Vier soorten taalvariatie</h3>
+    <p>Taal verschilt door wie je bent, waar je vandaan komt en waar je bent. Taalkundigen onderscheiden vier soorten. In het echt werken ze altijd samen: een jongere uit Brugge praat anders tegen zijn grootvader dan tegen zijn trainer.</p>
+    <div class="dims">
+      <div style="--dc:var(--denim)"><span>🗺️</span><b>Regionaal</b>Waar komt de spreker vandaan? Dialecten, regionale accenten, Belgisch- en Nederlands-Nederlands.</div>
+      <div style="--dc:var(--mustard)"><span>👥</span><b>Sociaal</b>Tot welke groep behoort de spreker? Leeftijd, opleiding, beroep, vriendengroep. Zo'n groepstaal heet een <em>sociolect</em>.</div>
+      <div style="--dc:var(--tomato)"><span>🎭</span><b>Situationeel</b>Waar en met wie praat je? Formeel of informeel, mondeling of schriftelijk. We spreken van <em>register</em>.</div>
+      <div style="--dc:var(--sage)"><span>🌍</span><b>Etnisch</b>Welke talen en culturen spelen mee? Woorden of klanken uit andere talen, vaak in meertalige buurten. Dat heet een <em>etnolect</em>.</div>
+    </div>
+    <p style="margin:14px 0 0">Variatie zie je op elk <strong>taalniveau</strong>: in de uitspraak (een zachte of harde g), de woordenschat (<em>confituur</em> of <em>jam</em>), de woordvorm (<em>mijnen</em> fiets) en de zinsbouw (<em>Ik heb ekik da gezien</em>).</p>
+  </div>
+  <div class="card" style="--c:var(--mustard)"><span class="tag">Oefening B · koppelen</span><h3>Welke soort variatie zie je?</h3><div id="dim"></div></div>
+  <div class="card" style="--c:var(--mustard)"><span class="tag">Oefening C · creatief</span><h3>Mismatch!</h3><p>Taal die niet bij de situatie past, werkt vaak grappig, net zoals een smoking op het strand.</p><div id="creatief"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 3 TAALSCHUIF ======== -->
+<section class="station" data-id="schuif">
+  <div class="st-head" style="--c:var(--sage)"><div class="label"><b>3</b><span>maat L</span></div><div><h2>De taalschuif</h2><p>Van dialect tot standaardtaal: een glijdende schaal</p><span class="care">🧵 Wasvoorschrift: met zorg behandelen, dialect krimpt snel</span></div></div>
+  <div class="card">
+    <span class="tag" style="--c:var(--sage)">Ontdek</span>
+    <h3>Schuif door het continuüm</h3>
+    <p>Sleep de schuifknop en hoor hoe dezelfde vraag verandert van heel lokaal naar algemeen.</p>
+    <div class="slider">
+      <input type="range" min="0" max="3" step="1" value="3" id="slide" aria-label="Positie op het continuüm">
+      <div class="ticks"><span>dialect</span><span>regiolect</span><span>tussentaal</span><span>standaardtaal</span></div>
+      <div class="say" id="say"></div>
+      <div class="desc" id="sayDesc"></div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin:8px 0 0">De dialectzin en de regiolectzin zijn benaderingen. Elk dorp klinkt nét anders!</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card reading" style="--c:var(--sage);margin:0">
+      <span class="tag">Leestekst</span>
+      <h3>Van keukentafel tot journaal</h3>
+      <div class="al"><span>1</span><div><h4>Een glijdende schaal</h4><p>In Vlaanderen hoor je niet één soort Nederlands, maar een hele waaier. Aan de ene kant staat het <mark>dialect</mark>: de taal van één dorp of stad, met eigen klanken, woorden en zinsbouw. Aan de andere kant staat de <mark>standaardtaal</mark>: het Nederlands van het journaal, de krant en de klas, dat je overal in het taalgebied begrijpt. Daartussen liggen het <mark>regiolect</mark>, een soort gemene deler van de dialecten uit een grotere streek, en de <mark>tussentaal</mark>, de informele omgangstaal die veel Vlamingen elke dag spreken. De grenzen zijn niet scherp: de ene variëteit loopt geleidelijk over in de andere. Taalkundigen spreken daarom van een <mark>continuüm</mark>.</p></div></div>
+      <div class="al"><span>2</span><div><h4>Dialect in de verdrukking</h4><p>Dialecten verliezen al tientallen jaren terrein. Ze worden in steeds minder situaties gebruikt (<mark>functieverlies</mark>) en verliezen hun typische klanken en woorden (<mark>structuurverlies</mark>). Daar zijn redenen voor. Dialecten hebben vaak geen woorden voor nieuwe dingen zoals een smartwatch of een podcast: een <em>taalkundig</em> nadeel. Wie alleen dialect spreekt, vindt moeilijker werk buiten zijn streek, en voor een nieuwslezer of leerkracht is dialect geen optie: een <em>economisch</em> nadeel. Hoe verder je van huis gaat, hoe minder mensen je begrijpen: een <em>communicatief</em> nadeel. En dialect heeft minder aanzien dan standaardtaal: een <em>sociaal</em> nadeel. Zo smelten dialecten samen tot regiolecten, die op hun beurt opgaan in tussentaal of standaardtaal.</p></div></div>
+      <div class="al"><span>3</span><div><h4>Een onverwachte comeback</h4><p>Toch is dialect niet dood. Nu bijna iedereen de standaardtaal beheerst, krijgen veel mensen opnieuw interesse in dialect. Het klinkt warm, eigen en vooral <em>authentiek</em>, en series en muziek in dialect worden populair. De houding blijft wel dubbel. Dezelfde Vlaming die zijn dialect charmant vindt, kan het in een andere situatie plat of onbeschaafd vinden.</p></div></div>
+    </div>
+    <figure class="photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Map_of_Dutch_dialects_according_to_Heeringa.png?width=900" alt="Kaart van de grote dialectgroepen in het Nederlandse taalgebied" loading="lazy" onerror="this.parentNode.classList.add('noimg')">
+      <figcaption><strong>De grote dialectgroepen</strong> van het Nederlandse taalgebied, van West-Vlaams tot Limburgs en Gronings. Zoek waar jij woont!<br>Kaart naar het onderzoek van W. Heeringa, <a href="https://commons.wikimedia.org/wiki/File:Map_of_Dutch_dialects_according_to_Heeringa.png" target="_blank" rel="noopener">Wikimedia Commons</a> (vrije licentie, zie bronpagina)</figcaption>
+    </figure>
+  </div>
+
+  <div class="card" style="--c:var(--sage);margin-top:22px"><span class="tag">Oefening A · ordenen</span><h3>Zet het continuüm in de juiste volgorde</h3><p>Van <strong>meest lokaal</strong> (bovenaan) naar <strong>meest algemeen</strong> (onderaan). Gebruik de pijltjes.</p><ol class="order" id="order"></ol><div class="checkrow"><button class="btn color" style="--c:var(--sage)" id="orderCheck">Controleer</button><span class="fb" id="orderFb"></span></div></div>
+  <div class="card" style="--c:var(--sage)"><span class="tag">Oefening B · koppelen</span><h3>Welk nadeel van dialect?</h3><div id="nadeel"></div></div>
+  <div class="card" style="--c:var(--sage)"><span class="tag">Oefening C · leestest</span><h3>Begrijp je de tekst?</h3><div id="lees3"></div></div>
+
+  <div class="card" style="--c:var(--sage)">
+    <span class="tag">Oefening D · kijken en luisteren</span>
+    <h3>Interview: de grote dialecttest</h3>
+    <p>Bekijk het interview en beantwoord de vragen. Lees de vragen eerst, zo weet je waar je op moet letten.</p>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/omiTneBnXZw" title="Interview over de grote dialecttest" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p class="vlink">Werkt de video niet? <a href="https://youtu.be/omiTneBnXZw" target="_blank" rel="noopener">Open het interview op YouTube</a>.</p>
+    <div id="interview"></div>
+  </div>
+  <div class="card" style="--c:var(--sage)"><span class="tag">Oefening E · samenvatten</span><h3>In je eigen woorden</h3><div id="sum3"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 4 TUSSENTAAL-LAB ======== -->
+<section class="station" data-id="lab">
+  <div class="st-head" style="--c:var(--tomato)"><div class="label"><b>4</b><span>maat XL</span></div><div><h2>Tussentaal-lab</h2><p>Niet echt dialect, niet echt standaardtaal</p><span class="care">🔬 Wasvoorschrift: binnenstebuiten keren en goed bekijken</span></div></div>
+  <div class="card">
+    <p class="lead"><strong>Tussentaal</strong> is een parapluterm voor gesproken Vlaams dat geen Standaardnederlands en geen zuiver dialect is, maar daar tussenin ligt. Het verschilt per streek en ligt soms dichter bij dialect, soms dichter bij standaardtaal. Je herkent het aan vier soorten kenmerken.</p>
+    <div class="catcards">
+      <div style="background:var(--denim)"><b>Uitspraak</b><p>Klanken vallen weg: een h- vooraan, een -t of -l achteraan.</p><em>eel → heel · da → dat · nie → niet · as → als</em></div>
+      <div style="background:var(--sage)"><b>Woordenschat</b><p>Woorden die (nog) geen standaardtaal zijn.</p><em>schoon → mooi · kot → kamer · allez → kom</em></div>
+      <div style="background:var(--rose)"><b>Woordvorm</b><p>Andere vormen van lidwoorden, voornaamwoorden, bijvoeglijke naamwoorden en werkwoorden.</p><em>ne → een · mijnen → mijn · ge zijt → je bent</em></div>
+      <div style="background:var(--plum)"><b>Zinsbouw</b><p>Het onderwerp wordt verdubbeld.</p><em>Hebde gij… → Heb jij… · Ik heb ekik… → Ik heb…</em></div>
+    </div>
+  </div>
+
+  <div class="card" style="--c:var(--tomato)">
+    <span class="tag">Oefening A · detective</span>
+    <h3>Op de bus naar school</h3>
+    <p>Klik op elk gemarkeerd stukje en kies bij welk soort kenmerk het hoort. Klik daarna op <em>Controleer</em>.</p>
+    <div class="dialog" id="dialog"></div>
+    <div class="checkrow"><button class="btn color" style="--c:var(--tomato)" id="detCheck">Controleer</button><span class="fb" id="detFb"></span></div>
+  </div>
+  <div class="pop" id="pop"><b>Welk kenmerk?</b><button data-c="uitspraak" style="background:var(--denim)">Uitspraak</button><button data-c="woordenschat" style="background:var(--sage)">Woordenschat</button><button data-c="woordvorm" style="background:var(--rose)">Woordvorm</button><button data-c="zinsbouw" style="background:var(--plum)">Zinsbouw</button></div>
+
+  <div class="card" style="--c:var(--tomato)">
+    <span class="tag">Oefening B · kijken</span>
+    <h3>Tussentaal in een soap</h3>
+    <p>Bekijk het fragment uit <em>Thuis</em>. Noteer per soort kenmerk minstens één voorbeeld dat je hoort.</p>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/FLZyhw4Tt-Y" title="Fragment uit Thuis" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p class="vlink">Werkt de video niet? <a href="https://youtu.be/FLZyhw4Tt-Y" target="_blank" rel="noopener">Open het fragment op YouTube</a>.</p>
+    <div id="thuis"></div>
+  </div>
+  <div class="card" style="--c:var(--tomato)"><span class="tag">Oefening C · omzetten</span><h3>Trek de standaardtaal aan</h3><p>Herschrijf elke zin in Standaardnederlands. Gebruik <em>je/jij</em> in plaats van <em>ge/gij</em>.</p><div id="omzet"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 5 NOORD & ZUID ======== -->
+<section class="station" data-id="noordzuid">
+  <div class="st-head" style="--c:var(--teal)"><div class="label"><b>5</b><span>import</span></div><div><h2>Noord &amp; Zuid</h2><p>Eén taal, twee (of meer) standaarden</p><span class="care">✈️ Wasvoorschrift: geschikt voor beide kanten van de grens</span></div></div>
+  <div class="grid2">
+    <div class="card reading" style="--c:var(--teal);margin:0">
+      <span class="tag">Uitleg</span>
+      <h3>Pluricentrisch Nederlands</h3>
+      <p>Lang dacht men dat er maar één "juist" Nederlands was, het Nederlands uit Nederland, en dat Vlaamse vormen afwijkingen waren. Vandaag zien taalkundigen het anders: het Nederlands is een <mark>pluricentrische taal</mark>. Het heeft meerdere centra met elk een eigen, gelijkwaardige standaard: <strong>standaardtaal in België</strong>, <strong>standaardtaal in Nederland</strong>, en ook Surinaams en Caribisch Nederlands.</p>
+      <p>Een Nederlander zit <em>in</em> de trein, een Vlaming vaak <em>op</em> de trein. Nederlanders vinden dat soms grappig, alsof Belgen bovenop de wagon zitten! Toch zijn beide vormen correct Nederlands. Let op: niet alles wat Vlamingen zeggen is standaardtaal in België. Tussentaalwoorden zoals <em>schoon</em> voor <em>mooi</em> horen er niet bij.</p>
+    </div>
+    <figure class="photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Patat_Friet_Isogloss.jpg?width=900" alt="Kaart van het Nederlandse taalgebied met de grens tussen de woorden patat en friet" loading="lazy" onerror="this.parentNode.classList.add('noimg')">
+      <figcaption><strong>Patat of friet?</strong> Een taalgrens dwars door het taalgebied. In het noorden zegt men <em>patat</em>, in Vlaanderen en het zuiden van Nederland <em>friet</em>.<br>Kaart: <a href="https://commons.wikimedia.org/wiki/File:Patat_Friet_Isogloss.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> (vrije licentie, zie bronpagina)</figcaption>
+    </figure>
+  </div>
+  <div class="card" style="--c:var(--teal);margin-top:22px"><span class="tag">Oefening A · sorteren</span><h3>Waar hoor je dit vooral?</h3><p>Hoort deze vorm vooral bij de standaardtaal in België of in Nederland?</p><div id="bn"></div></div>
+  <div class="card" style="--c:var(--teal)">
+    <span class="tag">Oefening B · luisteren</span>
+    <h3>Podcast: wat zeggen ze waar?</h3>
+    <p>Taalkundige en vertaalster Miet Ooms vertelt in de podcast <em>Over taal gesproken</em> van Onze Taal over de verschillen tussen het Nederlands in België en Nederland. <a href="https://onzetaal.nl/schatkamer/kijken-en-luisteren/podcasts/miet-ooms" target="_blank" rel="noopener">Beluister de podcast</a> en beantwoord de vragen.</p>
+    <div id="bnq"></div>
+  </div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 6 DRIE T'S ======== -->
+<section class="station" data-id="normen">
+  <div class="st-head" style="--c:var(--plum)"><div class="label"><b>6</b><span>op maat</span></div><div><h2>Norm, werkelijkheid, gevoel</h2><p>Wat de regel zegt, wat mensen zeggen en wat jij voelt</p><span class="care">📏 Wasvoorschrift: drie keer meten, één keer oordelen</span></div></div>
+  <div class="card">
+    <p class="lead">Als iemand iets zegt wat "niet volgens de regels" is, is dat dan meteen fout? Om daarover te praten zonder iemand te kwetsen, gebruiken taalkundigen drie begrippen.</p>
+    <div class="triad">
+      <div style="background:var(--plum)"><b>Taalnorm</b>Wat de regel zegt, zoals in een woordenboek, een grammatica of bij een taaladviesdienst.</div>
+      <div style="background:var(--denim)"><b>Taalwerkelijkheid</b>Wat mensen in het echt zeggen en schrijven, of dat nu volgens de regel is of niet.</div>
+      <div style="background:var(--mustard);color:var(--ink)"><b>Taalgevoel</b>Wat jij zelf goed of vreemd vindt klinken.</div>
+    </div>
+  </div>
+  <div class="card" style="--c:var(--plum)">
+    <span class="tag">Casus 1</span><h3>Groter als of groter dan?</h3>
+    <div class="case"><strong>De regel:</strong> na een vergrotende trap (groter, beter, ouder, lekkerder…) gebruik je <em>dan</em>. <em>Als</em> gebruik je wanneer je twee dingen gelijkstelt: <em>even groot als</em>, <em>zo snel als</em>.</div>
+    <div class="forum">
+      <div class="post"><small>@noor_06 op een forum</small>Mijn zus is twee jaar ouder als ik, maar ik ben wel groter als zij 😎</div>
+      <div class="post"><small>@examenstress</small>Dit jaar was het examen wiskunde veel moeilijker dan vorig jaar. Ik ben benieuwd naar de punten.</div>
+      <div class="post"><small>@foodie_jef</small>Pizza is gewoon lekkerder als pasta. Discussie gesloten.</div>
+    </div>
+    <div id="t1"></div>
+  </div>
+  <div class="card" style="--c:var(--plum)">
+    <span class="tag">Casus 2</span><h3>"Hun hebben gewonnen"</h3>
+    <div class="case">In Nederland hoor je vaak <em>hun</em> als onderwerp: <em>hun hebben gewonnen</em>, <em>hun zeggen dat</em>. Volgens de norm is dat fout: het moet <em>zij</em> of <em>ze</em> zijn. Toch is het heel gangbaar, vooral in Nederland en veel minder in Vlaanderen. Een mogelijke verklaring: <em>hun</em> verwijst duidelijk naar mensen, terwijl <em>ze</em> ook over dingen kan gaan. Voor sommige jongeren lijkt <em>zij</em> bovendien vooral over meisjes of vrouwen te gaan. Achter "hun hebben" zit voor veel sprekers dus een eigen systeem.</div>
+    <div id="t2"></div>
+  </div>
+  <div class="card" style="--c:var(--plum)">
+    <span class="tag">Casus 3</span><h3>Ge, gij of je, jij?</h3>
+    <div class="case">In de standaardtaal zeg je <em>je</em> en <em>jij</em>. Toch zeggen heel veel Vlamingen in informele situaties <em>ge</em> en <em>gij</em>, ook mensen die perfect standaardtaal kunnen spreken. Sommigen vinden <em>je/jij</em> afstandelijk of zelfs aanstellerig klinken. In een formele situatie, zoals een sollicitatiegesprek, schakelen de meeste mensen wel over naar <em>je/jij</em> of <em>u</em>.</div>
+    <div id="t3"></div>
+  </div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 7 HET JUISTE PAK ======== -->
+<section class="station" data-id="pak">
+  <div class="st-head" style="--c:var(--rose)"><div class="label"><b>7</b><span>gala</span></div><div><h2>Het juiste pak</h2><p>Kies je register zoals je je outfit kiest</p><span class="care">👔 Wasvoorschrift: formeel = strijken</span></div></div>
+  <div class="card" style="--c:var(--rose)"><span class="tag">Oefening A · kiezen</span><h3>Welke formulering past?</h3><div id="pakA"></div></div>
+  <div class="card" style="--c:var(--rose)">
+    <span class="tag">Oefening B · schrijven</span>
+    <h3>Een mail aan de directie</h3>
+    <div class="case"><strong>Situatie:</strong> de studiezaal van je school is tijdens de middagpauze gesloten. Jij en je klasgenoten willen daar graag rustig kunnen studeren, zeker in de examenperiode. Schrijf een mail van ongeveer <strong>120 woorden</strong> aan de directeur om te vragen of de studiezaal ook tijdens de middag open kan.</div>
+    <div id="mail"></div>
+  </div>
+  <div class="card" style="--c:var(--rose)">
+    <span class="tag">Oefening C · zelfevaluatie</span>
+    <h3>Check je mail</h3>
+    <p>Lees je mail kritisch na en vink eerlijk aan wat in orde is. Wat niet in orde is, pas je eerst aan in je mail.</p>
+    <div class="cl" id="mailcheck"></div>
+    <div class="checkrow"><button class="btn color" style="--c:var(--rose)" id="mcCheck">Bewaar mijn zelfevaluatie</button><span class="fb" id="mcFb"></span></div>
+  </div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 8 DEBAT ======== -->
+<section class="station" data-id="debat">
+  <div class="st-head" style="--c:var(--tomato)"><div class="label"><b>8</b><span>debat</span></div><div><h2>Debat: tussentaal op tv?</h2><p>Drempel of brug voor nieuwkomers?</p><span class="care">🔥 Wasvoorschrift: stevig wassen, argumenten blijven staan</span></div></div>
+  <div class="card reading" style="--c:var(--tomato)">
+    <span class="tag">Leestekst</span>
+    <h3>Tussentaal op tv: drempel of brug?</h3>
+    <div class="al"><span>1</span><div><p>Wie als nieuwkomer Nederlands leert, leert op school vooral standaardtaal. Maar zet in Vlaanderen de tv aan, en in soaps, series en amusementsprogramma's hoor je vaak tussentaal of zelfs dialect. Denk aan de Genkse citétaal uit een komische reeks of het West-Vlaams uit een plattelandsserie. Voor veel nieuwkomers is dat een drempel: ze begrijpen het journaal, maar niet hun favoriete serie.</p></div></div>
+    <div class="al"><span>2</span><div><p>Over de oplossing verschillen de meningen. Sommige taaldocenten willen meer standaardtaal op tv, zodat anderstaligen ook via ontspanning hun Nederlands kunnen oefenen. Anderen willen de regels strenger maken via taalwetgeving. Nog anderen kiezen de omgekeerde weg: leer nieuwkomers meteen ook een beetje tussentaal of dialect. Wie <em>alles goe?</em> of <em>ge weet wel</em> begrijpt en af en toe gebruikt, voelt zich sneller "een van ons".</p></div></div>
+    <div class="al"><span>3</span><div><p>De openbare omroep zelf werkt niet met één regel voor alles. Op een cultuurzender klinkt de taal anders dan op een kinderzender, maar voor nieuws en duiding gelden altijd de strengste taaleisen.</p></div></div>
+    <div class="al"><span>4</span><div><p>Elke aanpak lokt discussie uit. Standaardnederlands leren is al een hele klus. Moet je daar dan nog andere varianten bij nemen? Of is tussentaal juist de sleutel tot echte integratie?</p></div></div>
+  </div>
+  <div class="card" style="--c:var(--tomato)"><span class="tag">Oefening A · leestest</span><h3>Wat staat er in de tekst?</h3><div id="deb"></div></div>
+  <div class="card" style="--c:var(--tomato)">
+    <span class="tag">Oefening B · kijken en oordelen</span>
+    <h3>Dialect in prime time</h3>
+    <p>Bekijk het fragment uit de reeks <em>Bevergem</em>, die zich in een West-Vlaams dorp afspeelt.</p>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/9VKQOtHzrKk" title="Fragment uit Bevergem" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p class="vlink">Werkt de video niet? <a href="https://youtu.be/9VKQOtHzrKk" target="_blank" rel="noopener">Open het fragment op YouTube</a>.</p>
+    <div id="bev"></div>
+  </div>
+  <div class="card" style="--c:var(--tomato)"><span class="tag">Oefening C · standpunt</span><h3>Jouw mening, goed onderbouwd</h3><div id="stand"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Volgend kledingstuk ➜</button></div>
+</section>
+
+<!-- ======== 9 SPEURTOCHT ======== -->
+<section class="station" data-id="speur">
+  <div class="st-head" style="--c:var(--teal)"><div class="label"><b>9</b><span>online</span></div><div><h2>Speurtocht</h2><p>Zoek de kenmerken, tips en regels zelf op</p><span class="care">🔎 Wasvoorschrift: bronnen altijd vermelden</span></div></div>
+  <div class="card">
+    <p class="lead">Open de websites (ze openen in een nieuw tabblad) en beantwoord de zoekvragen hieronder.</p>
+    <div class="links">
+      <a href="https://neon.niederlandistik.fu-berlin.de/nl/nedling/langvar/overview/#variatie" target="_blank" rel="noopener"><i>OVERZICHT</i><b>Variatie in het Nederlands</b><span>Freie Universität Berlin: de dimensies van taalvariatie op een rij.</span></a>
+      <a href="https://neon.niederlandistik.fu-berlin.de/nl/nedling/langvar" target="_blank" rel="noopener"><i>VERDIEPING</i><b>Structuur en geschiedenis van het Nederlands</b><span>Freie Universität Berlin: variëteiten van het Nederlands.</span></a>
+      <a href="https://taalverhalen.be/over-taalvariatie/" target="_blank" rel="noopener"><i>VERHALEN</i><b>Taalvariatie in het Nederlands</b><span>Taalverhalen.be: uitleg en voorbeelden.</span></a>
+      <a href="https://www.vlaanderen.be/team-taaladvies/taaladviezen/woordgebruik/standaardtaal/standaardtaal-tussentaal-en-dialect-taalkundige-termen" target="_blank" rel="noopener"><i>BEGRIPPEN</i><b>Standaardtaal, tussentaal en dialect</b><span>Team Taaladvies van de Vlaamse overheid.</span></a>
+      <a href="https://www.vlaanderen.be/team-taaladvies/taaladviezen/woordgebruik/standaardtaal/standaardtaal-verschillen-tussen-belgie-en-nederland" target="_blank" rel="noopener"><i>NOORD-ZUID</i><b>Verschillen tussen België en Nederland</b><span>Team Taaladvies: wat is standaardtaal in België?</span></a>
+      <a href="https://onzetaal.nl/schatkamer/kijken-en-luisteren/podcasts/miet-ooms" target="_blank" rel="noopener"><i>PODCAST</i><b>Miet Ooms over taalvariatie</b><span>Onze Taal: verschillen en misverstanden.</span></a>
+      <a href="https://www.dialectloket.be" target="_blank" rel="noopener"><i>DIALECT</i><b>Dialectloket</b><span>Universiteit Gent: kaarten, geluidsfragmenten en dialecten.</span></a>
+    </div>
+  </div>
+  <div class="card" style="--c:var(--teal)"><span class="tag">Zoekopdrachten</span><h3>Op zoek in de taalwinkel</h3><div id="webq"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Naar het exit ticket ➜</button></div>
+</section>
+
+<!-- ======== 10 EXIT ======== -->
+<section class="station" data-id="exit">
+  <div class="st-head" style="--c:var(--ink)"><div class="label"><b>10</b><span>kassa</span></div><div><h2>Exit ticket</h2><p>Acht vragen: zit de kern goed?</p><span class="care">🏷️ Wasvoorschrift: zonder spieken</span></div></div>
+  <div class="card" style="--c:var(--ink)"><div id="exit"></div></div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><button class="btn" data-next>Naar de spiegel ➜</button></div>
+</section>
+
+<!-- ======== 11 SPIEGEL ======== -->
+<section class="station" data-id="score">
+  <div class="st-head" style="--c:var(--mustard)"><div class="label"><b>🪞</b><span>finish</span></div><div><h2>De grote spiegel</h2><p>Scorebord en export</p></div></div>
+  <div id="badge" class="badge" style="margin-bottom:22px"></div>
+  <div class="card"><table class="score" id="scoreTbl"></table></div>
+  <div class="card">
+    <h3>📄 Bewaar je werk als pdf</h3>
+    <p>Klik op de knop. In het afdrukvenster kies je als printer <strong>"Opslaan als PDF"</strong>. Je pdf bevat je naam, al je antwoorden, je taalspiegel, je mail en je scores.</p>
+    <div class="checkrow"><button class="btn color" id="exportBtn">Exporteer als pdf</button><button class="btn ghost small" id="resetBtn">Alles wissen en opnieuw beginnen</button></div>
+    <p id="missing" style="font-size:14.5px;color:var(--bad);font-weight:700"></p>
+  </div>
+  <div class="navbtns"><button class="btn ghost" data-prev>← Vorige</button><span></span></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><strong>Taalgarderobe</strong> · lesmodule taalvariatie voor de 3de graad. Afbeeldingen: eigen illustraties en vrij herbruikbare kaarten van Wikimedia Commons (bronvermelding bij elke kaart). Video's via YouTube. Bronnen: <a href="https://neon.niederlandistik.fu-berlin.de/nl/nedling/langvar" target="_blank" rel="noopener">Niederländische Philologie FU Berlin</a>, <a href="https://taalverhalen.be/over-taalvariatie/" target="_blank" rel="noopener">Taalverhalen.be</a>, <a href="https://www.vlaanderen.be/team-taaladvies" target="_blank" rel="noopener">Team Taaladvies</a>, <a href="https://onzetaal.nl" target="_blank" rel="noopener">Onze Taal</a>, <a href="https://www.dialectloket.be" target="_blank" rel="noopener">Dialectloket</a>.</div>
+</footer>
+
+<div id="report"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= STATE ================= */
+const KEY='taalgarderobe_v1';
+let S={name:'',klas:'',a:{},sc:{},ck:{},cur:0};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const norm=s=>(s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’']/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+const esc=s=>(s||'').toString().replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const strip=h=>{const d=document.createElement('div');d.innerHTML=h;return d.textContent.replace(/\s+/g,' ').trim();};
+const words=s=>(s||'').trim().split(/\s+/).filter(Boolean).length;
+
+const STATIONS=[
+ {id:'start',short:'Pashokje',color:'#1f2a44',req:[]},
+ {id:'spiegel',short:'Taalspiegel',title:'1 · Mijn taalspiegel',color:'#2f5d8a',req:['survey','portret']},
+ {id:'jasje',short:'Ander jasje',title:'2 · Zelfde boodschap, ander jasje',color:'#e3a92b',req:['jasjeA','dim','creatief']},
+ {id:'schuif',short:'Taalschuif',title:'3 · De taalschuif',color:'#6f9e7d',req:['order','nadeel','lees3','interview','sum3']},
+ {id:'lab',short:'Tussentaal',title:'4 · Tussentaal-lab',color:'#e0533d',req:['det','thuis','omzet']},
+ {id:'noordzuid',short:'Noord & Zuid',title:'5 · Noord & Zuid',color:'#2a9d9b',req:['bn','bnq']},
+ {id:'normen',short:'Drie T’s',title:'6 · Norm, werkelijkheid, gevoel',color:'#8a5a9e',req:['t1','t2','t3']},
+ {id:'pak',short:'Juiste pak',title:'7 · Het juiste pak',color:'#d9707f',req:['pakA','mail','mailcheck']},
+ {id:'debat',short:'Debat',title:'8 · Debat: tussentaal op tv?',color:'#c2410c',req:['deb','bev','stand']},
+ {id:'speur',short:'Speurtocht',title:'9 · Speurtocht',color:'#2a9d9b',req:['webq']},
+ {id:'exit',short:'Exit ticket',title:'10 · Exit ticket',color:'#1f2a44',req:['exit']},
+ {id:'score',short:'Spiegel',color:'#e3a92b',req:[]}
+];
+
+/* ================= GENERIC BLOCKS ================= */
+const SIT=['jongere tegen vrienden op de speelplaats','professor in een lezing of formeel gesprek','Vlaamse tante op een familiefeest','klant tegen een verkoper in een winkel','bedrijf in een officiële brief'];
+const DIM=['regionaal','sociaal','situationeel','etnisch'];
+const NAD=['taalkundig nadeel','economisch nadeel','communicatief nadeel','sociaal nadeel'];
+const BE='vooral standaardtaal in België', NL='vooral standaardtaal in Nederland';
+const B={
+ portret:{items:[
+  {p:'Bekijk je taalspiegel. In welke situaties kies jij voor standaardtaal? Waarom juist daar?',c:[{k:'open',min:15,model:'Bijvoorbeeld: bij de dokter, met de directeur en bij een sollicitatie, omdat ik die mensen niet goed ken en een goede indruk wil maken. Standaardtaal toont respect en iedereen begrijpt het.'}]},
+  {p:'Welke talen spreek jij (bv. Nederlands, Frans, Engels, Arabisch, Pools…)? Wanneer gebruik je welke taal?',c:[{k:'open',min:8,model:'Antwoord verschilt per leerling.'}]},
+  {p:'Hoe zou je aan je grootouders vertellen wat je van school vindt? En hoe aan je vrienden? Schrijf beide versies op.',c:[{k:'open',min:15,model:'Oma: "School gaat goed, oma. Ik vind wiskunde wel moeilijk, maar de leerkrachten helpen me." Vrienden: "School? Allez, ’t valt mee, maar wiskunde is echt zwaar ambetant."'}]},
+  {p:'Heb je ooit gevoeld dat je je taal niet goed kon aanpassen aan een situatie, of werd je aangesproken op je taal? Hoe voelde dat?',c:[{k:'open',min:10,model:'Antwoord verschilt per leerling.'}]}
+ ]},
+ jasjeA:{items:['A · “Zwaar duur, bro. Echt nie normaal.”','B · “Mijns inziens is de prijs aan de hoge kant.”','C · “Amai, da’s peperduur, zenne!”','D · “Ik vind dat erg duur.”','E · “Wij achten het gevraagde bedrag buitensporig.”'].map((p,i)=>({p:'<b>'+p+'</b>',c:[{k:'sel',opts:[SIT[3],SIT[0],SIT[4],SIT[2],SIT[1]],ans:SIT[i]}]}))},
+ dim:{items:[
+  ['In West-Vlaanderen hoor je vaak een h waar anderen een g zeggen: <em>hoed</em> in plaats van <em>goed</em>.','regionaal'],
+  ['Een Nederlander zit <em>in</em> de trein, een Vlaming <em>op</em> de trein.','regionaal'],
+  ['Jongeren zeggen “dat is next level”, hun grootouders “dat is prachtig”.','sociaal'],
+  ['Studenten geneeskunde praten onder elkaar over “de co’s” en “een anamnese”.','sociaal'],
+  ['Tegen de directeur zeg je <em>u</em>, tegen je beste vriend <em>gij</em> of <em>jij</em>.','situationeel'],
+  ['In een chat schrijf je “wrm nie?”, in een mail aan je leerkracht “Waarom niet?”.','situationeel'],
+  ['In meertalige stadsbuurten gebruiken jongeren woorden uit het Arabisch, zoals <em>wollah</em> (echt waar).','etnisch'],
+  ['Bij sommige sprekers met een Marokkaanse achtergrond klinkt de z scherper.','etnisch']
+ ].map(([p,a])=>({p,c:[{k:'sel',opts:DIM,ans:a}]}))},
+ creatief:{items:[
+  {p:'Schrijf een korte scène (5 tot 8 zinnen) waarin de taal totaal niet past bij de situatie. Bijvoorbeeld: een nieuwslezer die het weerbericht in jongerentaal brengt, of een peuter die praat als een advocaat.',c:[{k:'open',min:40,model:'Nieuwslezer: "Yo, goeienavond allemaal! Morgen wordt het echt zwaar nat, zenne. Pak uwe paraplu mee, want die wolken gaan ferm lossen. In de namiddag wordt het wel chill, rond de achttien graden. Mega vibes voor een terraske! Dat was het weer, salukes!"'}]},
+  {p:'<strong>Undercover:</strong> een leerkracht wil ongemerkt een dag meedraaien in jouw vriendengroep. Welke vijf woorden of uitdrukkingen moet hij kennen? Geef telkens de betekenis en wanneer je het zegt.',c:[{k:'open',min:20,model:'Bijvoorbeeld: "nie normaal" (heel erg, als iets indruk maakt), "chill" (ontspannen), "ambetant" (vervelend), "cringe" (gênant), "slay" (iets heel goed doen).'}]}
+ ]},
+ nadeel:{items:[
+  ['Er bestaat in veel dialecten geen woord voor <em>hashtag</em> of <em>streamingdienst</em>.','taalkundig nadeel'],
+  ['Een nieuwslezer op de nationale tv mag geen dialect spreken.','economisch nadeel'],
+  ['Een Limburger begrijpt een West-Vlaming die dialect spreekt maar moeilijk.','communicatief nadeel'],
+  ['Wie dialect spreekt, wordt soms als "boers" of minder slim gezien.','sociaal nadeel'],
+  ['Een sollicitant uit Kortrijk die alleen dialect spreekt, vindt moeilijk werk in Hasselt.','economisch nadeel'],
+  ['Hoe verder van huis, hoe kleiner de groep mensen die je dialect volgt.','communicatief nadeel']
+ ].map(([p,a])=>({p,c:[{k:'sel',opts:NAD,ans:a}]}))},
+ lees3:{items:[
+  {p:'Wat bedoelen taalkundigen met een <em>continuüm</em>?',c:[{k:'radio',opts:['Een strikte opdeling in twee talen','Een glijdende schaal waarop variëteiten geleidelijk in elkaar overlopen','Een lijst met alle dialecten van Vlaanderen','Een regel die zegt welke taal je moet spreken'],ans:1}]},
+  {p:'Welke variëteit is een gemene deler van de dialecten uit een grotere streek?',c:[{k:'radio',opts:['standaardtaal','tussentaal','regiolect','sociolect'],ans:2}]},
+  {p:'"Dialect wordt in steeds minder situaties gebruikt." Hoe heet dat?',c:[{k:'radio',opts:['functieverlies','structuurverlies','taalverrijking','taalnorm'],ans:0}]},
+  {p:'"Jongeren kennen de typische dialectwoorden van hun grootouders niet meer." Hoe heet dat?',c:[{k:'radio',opts:['functieverlies','structuurverlies','pluricentrisch','register'],ans:1}]},
+  {p:'Waarom is dialect volgens de tekst weer populair in series en muziek?',c:[{k:'radio',opts:['Omdat het verplicht is op tv','Omdat het authentiek en eigen klinkt, nu iedereen standaardtaal kent','Omdat jongeren geen standaardtaal meer kennen','Omdat dialect makkelijker is dan standaardtaal'],ans:1}]},
+  {p:'Welke houding hebben veel Vlamingen tegenover dialect?',c:[{k:'radio',opts:['Alleen positief','Alleen negatief','Dubbel: charmant en eigen, maar soms ook plat of onbeschaafd','Onverschillig'],ans:2}]}
+ ]},
+ interview:{items:[
+  {p:'Waarom namen de makers de grote dialecttest af, naast publiciteit voor hun boek? Duid <strong>drie</strong> redenen aan.',c:[{k:'check',opts:['om de rijkdom van dialecten te tonen','om te peilen hoe mensen tegenover hun eigen dialect staan','om gegevens te verzamelen','om dialect verplicht te maken op school','om te bewijzen dat dialect beter is dan standaardtaal'],ans:[0,1,2]}]},
+  {p:'Hoe verklaren de geïnterviewden de dialectrevival?',c:[{k:'radio',opts:['Dialect werd vroeger verdrongen omdat iedereen standaardtaal moest leren. Nu iedereen die kent, wordt dialect weer aantrekkelijk en authentiek gevonden.','De overheid betaalt reclame voor dialect.','Jongeren spreken geen standaardtaal meer.','Dialecten zijn makkelijker geworden.'],ans:0}]},
+  {p:'Hoe waarderen Vlamingen hun dialect volgens het interview?',c:[{k:'radio',opts:['Ze vinden het alleen maar lelijk.','Ze koesteren het en vinden het charmant, maar vinden het ook lomp. Ze schamen zich minder omdat hun omgeving weet dat ze ook standaardtaal kennen.','Ze spreken het niet meer.','Ze vinden het belangrijker dan standaardtaal.'],ans:1}]},
+  {p:'Waarom staat het dialect het sterkst in West-Vlaanderen? Duid <strong>drie</strong> redenen aan.',c:[{k:'check',opts:['de dialecten binnen West-Vlaanderen verschillen weinig van elkaar','de provincie ligt aan de rand, met weinig instroom uit Brabant en Antwerpen','er trekken weinig West-Vlamingen weg naar andere regio’s','West-Vlaanderen heeft de meeste inwoners','dialect is er verplicht op school'],ans:[0,1,2]}]}
+ ]},
+ sum3:{items:[
+  {p:'Vat de leestekst <em>Van keukentafel tot journaal</em> samen in <strong>maximaal vier zinnen</strong>, in je eigen woorden.',c:[{k:'open',min:35,model:'In Vlaanderen bestaat een continuüm van dialect over regiolect en tussentaal naar standaardtaal, zonder scherpe grenzen. Dialecten verliezen terrein door functie- en structuurverlies, omdat ze taalkundige, economische, communicatieve en sociale nadelen hebben. Toch kent dialect een comeback, omdat het authentiek klinkt nu iedereen standaardtaal beheerst. De houding tegenover dialect blijft wel dubbel.'}]}
+ ]},
+ thuis:{items:[
+  {p:'<b>Uitspraak:</b> welk voorbeeld hoor je?',c:[{k:'open',min:2,model:'bv. wegvallen van de h- (’ij in plaats van hij), da in plaats van dat, da’s waar.'}]},
+  {p:'<b>Woordenschat:</b> welk voorbeeld hoor je?',c:[{k:'open',min:2,model:'bv. kot (kamer of huis), arrangeren (regelen).'}]},
+  {p:'<b>Woordvorm:</b> welk voorbeeld hoor je?',c:[{k:'open',min:2,model:'bv. den in plaats van de, zijne pa, ne goeie gast, zijt gij.'}]},
+  {p:'<b>Zinsbouw:</b> welk voorbeeld hoor je?',c:[{k:'open',min:2,model:'bv. verdubbeling van het onderwerp: vertrouwk ik u, meende gij da?'}]},
+  {p:'Waarom laten de makers van een soap de personages tussentaal spreken en geen strikte standaardtaal?',c:[{k:'radio',opts:['Omdat de acteurs geen standaardtaal kennen','Omdat het natuurlijk en herkenbaar klinkt, zoals mensen thuis echt praten','Omdat tussentaal verplicht is in soaps','Omdat standaardtaal verboden is op tv'],ans:1}]}
+ ]},
+ omzet:{items:[
+  {p:'Hebde gij da gezien? → {0}',c:[{k:'text',acc:['heb jij dat gezien','heb je dat gezien'],w:1}]},
+  {p:'Ge moet nie zo roepen. → {0}',c:[{k:'text',acc:['je moet niet zo roepen','jij moet niet zo roepen'],w:1}]},
+  {p:'Dienen auto is eel schoon. → {0}',c:[{k:'text',acc:['die auto is heel mooi'],w:1}]},
+  {p:'Ik ga mijnen fiets halen. → {0}',c:[{k:'text',acc:['ik ga mijn fiets halen'],w:1}]},
+  {p:'Zijde gij al thuis? → {0}',c:[{k:'text',acc:['ben jij al thuis','ben je al thuis'],w:1}]},
+  {p:'Da’s ne goeie film. → {0}',c:[{k:'text',acc:['dat is een goede film'],w:1}]},
+  {p:'Ik eb em nie gezien. → {0}',c:[{k:'text',acc:['ik heb hem niet gezien'],w:1}]},
+  {p:'Wilde gij ook iets drinken? → {0}',c:[{k:'text',acc:['wil jij ook iets drinken','wil je ook iets drinken'],w:1}]}
+ ]},
+ bn:{items:[
+  ['Ik zit al op de trein.',BE],['Ik eet een tosti.',NL],['Betalen tegen ten laatste vrijdag.',BE],['Hij heeft de kat op het spek gebonden.',NL],
+  ['Een pot confituur.',BE],['Een zak patat met mayo.',NL],['Zaterdag gaan we op restaurant.',BE],['Hij parkeerde zijn fiets op de stoep.',NL],
+  ['Neem je lintmeter mee.',BE],['Op het einde van de maand.',BE],['Kan ik hier pinnen?',NL],['Dat is mosterd na de maaltijd.',NL]
+ ].map(([p,a])=>({p:'<b>'+p+'</b>',c:[{k:'radio',opts:['🇧🇪 België','🇳🇱 Nederland'],ans:a===BE?0:1}]}))},
+ bnq:{items:[
+  {p:'Een Nederlandse vriend lacht met jouw zin "Ik zit op de trein." Wat antwoord je het best?',c:[{k:'radio',opts:['"Sorry, dat is fout Nederlands."','"Dat is standaardtaal in België. Het Nederlands is pluricentrisch, dus jouw vorm en mijn vorm zijn allebei correct."','"Dat is dialect, dat mag ik niet zeggen."','"In België zitten we echt bovenop de trein."'],ans:1}]},
+  {p:'Wat betekent <em>pluricentrisch</em>?',c:[{k:'radio',opts:['Een taal met één centrum dat de norm bepaalt','Een taal met meerdere centra die elk een eigen, gelijkwaardige standaard hebben','Een taal die alleen in steden gesproken wordt','Een taal zonder regels'],ans:1}]},
+  {p:'Is elk woord dat Vlamingen gebruiken ook standaardtaal in België?',c:[{k:'radio',opts:['Ja, alles wat Vlamingen zeggen is standaardtaal.','Nee, tussentaalwoorden zoals <em>schoon</em> (voor mooi) zijn geen standaardtaal.'],ans:1}]},
+  {p:'<b>Podcast:</b> noteer één verschil of misverstand tussen het Nederlands in België en Nederland dat Miet Ooms bespreekt, en de oorzaak die ze noemt.',c:[{k:'open',min:12,model:'Antwoord hangt af van het gekozen voorbeeld uit de podcast.'}]}
+ ]},
+ t1:{items:[
+  {p:'<b>Taalnorm:</b> welk woord schrijft de regel voor na <em>groter</em>? {0}',c:[{k:'text',acc:['dan','groter dan']}]},
+  {p:'<b>Taalwerkelijkheid:</b> hoeveel van de drie berichten volgen de regel helemaal?',c:[{k:'radio',opts:['geen enkel','één','twee','alle drie'],ans:1}],explain:'Alleen @examenstress schrijft “moeilijker dan”. @noor_06 en @foodie_jef gebruiken “als”.'},
+  {p:'Waarom zeggen veel mensen toch <em>groter als</em>?',c:[{k:'radio',opts:['Omdat ze lui zijn','Omdat “als” ook in vergelijkingen voorkomt (even groot als) en de twee constructies door elkaar lopen','Omdat “dan” een dialectwoord is','Omdat de regel nieuw is'],ans:1}]},
+  {p:'<b>Taalgevoel:</b> wat zeg jij zelf, en klinkt "groter als" voor jou fout of normaal?',c:[{k:'open',min:6,model:'Antwoord verschilt per leerling.'}]}
+ ]},
+ t2:{items:[
+  {p:'<b>Taalnorm:</b> wat is volgens de regel correct?',c:[{k:'radio',opts:['Hun hebben gewonnen.','Zij hebben gewonnen.','Hullie hebben gewonnen.'],ans:1}]},
+  {p:'<b>Taalwerkelijkheid:</b> waar hoor je "hun hebben" het meest?',c:[{k:'radio',opts:['in Vlaanderen','in Nederland','overal evenveel'],ans:1}]},
+  {p:'Welke verklaring geeft de tekst voor "hun" als onderwerp?',c:[{k:'radio',opts:['“Hun” verwijst duidelijk naar mensen en klinkt voor sommigen neutraler dan “zij”.','“Hun” is korter.','“Hun” komt uit het Engels.'],ans:0}]},
+  {p:'<b>Taalgevoel:</b> hoe klinkt "Hun hebben gewonnen" voor jou? Begrijp je waarom mensen het zeggen?',c:[{k:'open',min:8,model:'Antwoord verschilt per leerling.'}]}
+ ]},
+ t3:{items:[
+  {p:'<b>Taalnorm:</b> welke vorm hoort bij de standaardtaal?',c:[{k:'radio',opts:['ge / gij','je / jij'],ans:1}]},
+  {p:'<b>Taalwerkelijkheid:</b> waarom gebruiken sommige Vlamingen bewust <em>ge/gij</em>, zelfs als ze standaardtaal kennen?',c:[{k:'radio',opts:['Omdat ze je/jij niet kennen','Omdat je/jij voor hen afstandelijk of aanstellerig klinkt','Omdat ge/gij formeler is'],ans:1}]},
+  {p:'<b>Taalgevoel:</b> wanneer gebruik jij <em>ge/gij</em> en wanneer <em>je/jij</em>? Vind je het ene beter dan het andere?',c:[{k:'open',min:10,model:'Antwoord verschilt per leerling.'}]}
+ ]},
+ pakA:{items:[
+  {p:'Je mailt de directeur. Welke aanhef kies je?',c:[{k:'radio',opts:['Hey dir!','Geachte mevrouw de directeur','Yo mevrouw,'],ans:1}]},
+  {p:'Welke afsluiting past onder die mail?',c:[{k:'radio',opts:['Met vriendelijke groeten','Xoxo','Salukes!'],ans:0}]},
+  {p:'Je vraagt in de klas uitstel voor een taak.',c:[{k:'radio',opts:['“Ik geef da morgen af, oké?”','“Zou ik mijn taak een dag later mogen indienen? Ik was gisteren ziek.”','“Uitstel, nu.”'],ans:1}]},
+  {p:'Je reageert op de vakantiefoto van je beste vriend op Instagram.',c:[{k:'radio',opts:['“Geachte, uw foto oogt esthetisch verantwoord.”','“Amai, wa ne zalige foto! 😍”','“Hierbij bevestig ik de ontvangst van uw afbeelding.”'],ans:1}],explain:'Informele taal past hier perfect. Een formele reactie zou net een mismatch zijn.'},
+  {p:'Je spreekt een voicemail in voor een werkgever, voor een studentenjob.',c:[{k:'radio',opts:['“Goedemiddag, u spreekt met Senne Peeters. Ik bel in verband met de vacature voor een studentenjob. U kunt me terugbellen op dit nummer. Dank u wel.”','“Ewa, ’t is Senne, bel mij efkes terug é.”','“Senne hier. Job? Bel maar.”'],ans:0}]},
+  {p:'Je begint een presentatie voor een jury.',c:[{k:'radio',opts:['“Allez, we gaan der maar aan beginnen zeker?”','“Goedemiddag, beste juryleden. Vandaag stel ik u ons project voor.”','“Hallo hallo, alles goe?”'],ans:1}]}
+ ]},
+ mail:{items:[
+  {p:'<b>Onderwerpregel</b> van je mail:',c:[{k:'open',min:2,model:'Vraag: studiezaal open tijdens de middagpauze'}]},
+  {p:'<b>Je mail</b> (aanhef, inleiding, vraag, argumenten, slot, groet):',c:[{k:'open',min:80,model:'Geachte mevrouw de directeur\n\nIk ben Lotte Peeters uit 6 HW. Namens mijn klas wil ik u vragen of de studiezaal ook tijdens de middagpauze open kan zijn.\n\nTijdens de examenperiode willen veel leerlingen hun middag gebruiken om rustig te studeren. Op de speelplaats en in de refter is dat moeilijk door het lawaai. Bovendien hebben sommige leerlingen thuis weinig rust om te studeren. Enkele leerlingen uit de laatste graad willen graag mee toezicht houden.\n\nZou u dit willen overwegen? Ik licht ons voorstel graag persoonlijk toe.\n\nMet vriendelijke groeten\n\nLotte Peeters\n6 HW'}]}
+ ]},
+ deb:{items:[
+  {p:'Wat is de centrale vraag van de tekst?',c:[{k:'radio',opts:['Moet het journaal in dialect?','Is al die tussentaal of dat dialect op tv een drempel of een brug voor nieuwkomers?','Waarom kijken nieuwkomers geen tv?','Welke soap is het populairst?'],ans:1}]},
+  {p:'Welke <strong>drie</strong> aanpakken noemt de tekst?',c:[{k:'check',opts:['meer standaardtaal op tv','strengere taalwetgeving','nieuwkomers ook tussentaal of dialect aanleren','alle soaps ondertitelen in het Frans','tv verbieden in taalcursussen'],ans:[0,1,2]}]},
+  {p:'Welke regel volgt de openbare omroep volgens de tekst?',c:[{k:'radio',opts:['Overal exact dezelfde taal','Taal aangepast per programma, maar de strengste eisen voor nieuws en duiding','Geen enkele regel','Alleen dialect in fictie'],ans:1}]}
+ ]},
+ bev:{items:[
+  {p:'Vind je het taalgebruik in <em>Bevergem</em> acceptabel voor een reeks die in heel Vlaanderen te zien is? Geef je mening met minstens één argument.',c:[{k:'open',min:25,model:'Ja, want het dialect maakt de reeks authentiek en grappig, en het verhaal speelt zich af in een West-Vlaams dorp. Wie het niet begrijpt, kan ondertiteling gebruiken. Toch begrijp ik dat het voor nieuwkomers of mensen uit andere provincies moeilijk te volgen is.'}]},
+  {p:'Noteer drie woorden of uitdrukkingen uit het fragment die anders zijn dan in de standaardtaal, en geef telkens de standaardtaalvorm (of je beste gok).',c:[{k:'open',min:6,model:'Antwoord hangt af van het fragment.'}]}
+ ]},
+ stand:{items:[
+  {p:'Moet er meer standaardtaal komen in Vlaamse series en amusementsprogramma’s? Schrijf je <strong>standpunt</strong> met <strong>twee argumenten</strong> en weerleg <strong>één tegenargument</strong>.',c:[{k:'open',min:70,model:'Ik vind niet dat er meer standaardtaal moet komen in series. Ten eerste klinken personages in tussentaal natuurlijker, omdat veel Vlamingen thuis zo praten. Ten tweede leren nieuwkomers zo ook de taal die ze op straat en op het werk horen. Tegenstanders zeggen dat tussentaal het voor nieuwkomers moeilijker maakt. Maar met ondertiteling en duidelijke standaardtaal in het nieuws kunnen ze zowel de standaardtaal als de omgangstaal leren.'}]}
+ ]},
+ webq:{items:[
+  {p:'<b>Variatie in het Nederlands (FU Berlin, overzicht)</b>: welke soorten of dimensies van taalvariatie onderscheidt deze site? Noteer ze met telkens één voorbeeld.',c:[{k:'open',min:12,model:'Antwoord op basis van de website: bv. regionale variatie (dialecten), sociale variatie (groepstaal), situationele variatie (register)…'}]},
+  {p:'<b>Structuur en geschiedenis van het Nederlands (FU Berlin)</b>: kies één variëteit die je daar vindt (bv. Belgisch-Nederlands, Surinaams-Nederlands, een dialect) en noteer drie kenmerken.',c:[{k:'open',min:12,model:'Antwoord op basis van de website.'}]},
+  {p:'<b>Taalverhalen.be</b>: welk voorbeeld van taalvariatie vond jij het boeiendst? Vat het samen in twee zinnen.',c:[{k:'open',min:15,model:'Antwoord op basis van de website.'}]},
+  {p:'<b>Team Taaladvies (standaardtaal, tussentaal, dialect)</b>: met welk kledingstuk vergelijkt deze pagina de standaardtaal? {0}',c:[{k:'text',acc:['pak','een pak','duur pak','een duur pak','maatpak','kostuum']}],explain:'Wie in de tuin gaat werken, doet dat niet in een duur pak. Zo kies je ook je taal naar de situatie.'},
+  {p:'<b>Team Taaladvies (België en Nederland)</b>: wat betekent <em>’s middags</em> in de standaardtaal in België?',c:[{k:'radio',opts:['rond het middaguur','in de namiddag','’s avonds'],ans:0}],explain:'In Nederland betekent ’s middags vaak ‘in de namiddag’. Een bron van misverstanden bij afspraken!'},
+  {p:'<b>Dialectloket</b>: zoek het dialect van jouw gemeente of een gemeente in de buurt. Noteer twee woorden of klanken die anders zijn dan in de standaardtaal.',c:[{k:'open',min:6,model:'Antwoord verschilt per leerling.'}]}
+ ]},
+ exit:{items:[
+  {p:'Wat is tussentaal?',c:[{k:'radio',opts:['Het dialect van één dorp','Informele omgangstaal die tussen dialect en standaardtaal ligt','De standaardtaal in Nederland','Een geheimtaal van jongeren'],ans:1}],explain:'Tussentaal is een parapluterm voor gesproken Vlaams tussen dialect en standaardtaal.'},
+  {p:'Welke volgorde van het continuüm klopt, van lokaal naar algemeen?',c:[{k:'radio',opts:['standaardtaal → tussentaal → regiolect → dialect','dialect → regiolect → tussentaal → standaardtaal','regiolect → dialect → standaardtaal → tussentaal','dialect → tussentaal → regiolect → standaardtaal'],ans:1}]},
+  {p:'In een sollicitatiegesprek spreek je standaardtaal, met je vrienden tussentaal. Welke soort variatie is dat?',c:[{k:'radio',opts:['regionale variatie','sociale variatie','situationele variatie','etnische variatie'],ans:2}]},
+  {p:'"Ik zit op de trein" is…',c:[{k:'radio',opts:['een taalfout','dialect','standaardtaal in België','tussentaal'],ans:2}],explain:'Het Nederlands is pluricentrisch: in de trein en op de trein zijn allebei correct.'},
+  {p:'"Ik eb em nie gezien." Welk soort tussentaalkenmerk zie je vooral?',c:[{k:'radio',opts:['uitspraak: klanken vallen weg','woordenschat','zinsbouw: verdubbeling van het onderwerp','geen enkel'],ans:0}]},
+  {p:'"Ik ga mijnen fiets halen." Welk soort kenmerk?',c:[{k:'radio',opts:['uitspraak','woordenschat','woordvorm','zinsbouw'],ans:2}]},
+  {p:'Wat is de <em>taalnorm</em>?',c:[{k:'radio',opts:['Wat de meeste mensen zeggen','Wat jij zelf goed vindt klinken','Wat de regel zegt, zoals in naslagwerken en bij taaladviesdiensten','De taal van jongeren'],ans:2}]},
+  {p:'Waarom verliest dialect terrein?',c:[{k:'radio',opts:['Omdat het verboden is','Door functie- en structuurverlies, onder meer door taalkundige, economische, communicatieve en sociale nadelen','Omdat niemand het nog begrijpt','Omdat de overheid dat wil'],ans:1}]}
+ ]}
+};
+const ckKey=(id,i,j)=>id+'.'+i+'.'+j;
+function renderBlock(id){
+  const host=document.getElementById(id); if(!host) return;
+  const ol=document.createElement('ol'); ol.className='ex';
+  B[id].items.forEach((it,i)=>{
+    const li=document.createElement('li'); li.dataset.i=i;
+    const parts=it.p.split(/\{(\d)\}/), used=new Set(); let h='<div class="p">';
+    parts.forEach((pt,n)=>{if(n%2){used.add(+pt);h+=ctrlHTML(id,i,+pt,it.c[+pt]);}else h+=pt;});
+    h+='</div>';
+    const rest=it.c.map((c,j)=>used.has(j)?'':ctrlHTML(id,i,j,c)).join(''); if(rest)h+='<div class="ctrls">'+rest+'</div>';
+    if(it.explain)h+='<div class="expl">💡 '+it.explain+'</div>';
+    const m=it.c.find(c=>c.k==='open'); if(m)h+='<div class="model"><strong>Mogelijk antwoord:</strong> '+esc(m.model).replace(/\n/g,'<br>')+'</div>';
+    const t=it.c.find(c=>c.k==='text'&&c.w); if(t)h+='<div class="model"><strong>Juist antwoord:</strong> '+t.acc[0].charAt(0).toUpperCase()+t.acc[0].slice(1)+'.</div>';
+    li.innerHTML=h; ol.appendChild(li);
+  });
+  host.innerHTML=''; host.appendChild(ol);
+  const row=document.createElement('div'); row.className='checkrow'; row.innerHTML='<button class="btn color">Controleer</button><span class="fb"></span>'; host.appendChild(row);
+  row.querySelector('button').onclick=()=>checkBlock(id,true);
+  host.querySelectorAll('[data-key]').forEach(el=>{
+    const k=el.dataset.key; if(S.a[k]!=null)el.value=S.a[k];
+    const upd=()=>{S.a[k]=el.value;save();if(el.tagName==='TEXTAREA')wc(el);};
+    el.addEventListener('input',upd); el.addEventListener('change',upd); if(el.tagName==='TEXTAREA')wc(el);
+  });
+  host.querySelectorAll('.opts').forEach(box=>{
+    const k=box.dataset.k, multi=box.dataset.multi==='1';
+    const paint=()=>{const v=S.a[k];box.querySelectorAll('.opt').forEach(b=>{const i=+b.dataset.i;b.classList.toggle('sel',multi?(Array.isArray(v)&&v.includes(i)):(v!=null&&+v===i));});};
+    box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;
+      if(multi){let v=Array.isArray(S.a[k])?S.a[k]:[];v=v.includes(i)?v.filter(x=>x!==i):[...v,i];S.a[k]=v;}else S.a[k]=i;save();paint();});
+    paint();
+  });
+  if(S.ck[id]) checkBlock(id,false);
+}
+function wc(el){const w=el.parentNode.querySelector('.wc');if(w)w.textContent=words(el.value)+' woorden (min. '+el.dataset.min+')';}
+function ctrlHTML(id,i,j,c){
+  const k=ckKey(id,i,j);
+  if(c.k==='text') return '<input type="text" class="'+(c.w?'wide':'')+'" data-key="'+k+'" autocomplete="off" spellcheck="false" placeholder="…">';
+  if(c.k==='sel') return '<select data-key="'+k+'"><option value="">kies…</option>'+c.opts.map(o=>'<option>'+o+'</option>').join('')+'</select>';
+  if(c.k==='radio'||c.k==='check'){const col=c.opts.some(o=>strip(o).length>32);return '<div class="opts'+(col?' col':'')+'" data-k="'+k+'"'+(c.k==='check'?' data-multi="1"':'')+'>'+c.opts.map((o,n)=>'<button type="button" class="opt" data-i="'+n+'">'+o+'</button>').join('')+'</div>';}
+  if(c.k==='open') return '<div style="width:100%"><textarea data-key="'+k+'" data-min="'+c.min+'" placeholder="Typ hier je antwoord…" style="'+(c.min>=60?'min-height:200px':'')+'"></textarea><div class="wc"></div></div>';
+  return '';
+}
+function evalCtrl(c,v){
+  if(c.k==='text') return v!=null&&c.acc.some(a=>norm(a)===norm(v));
+  if(c.k==='sel') return v===c.ans;
+  if(c.k==='radio') return v!=null&&v!==''&&+v===c.ans;
+  if(c.k==='check') return Array.isArray(v)&&v.length===c.ans.length&&c.ans.every(x=>v.includes(x));
+  if(c.k==='open') return words(v)>=c.min;
+}
+function checkBlock(id,user){
+  const host=document.getElementById(id); let s=0,m=0;
+  B[id].items.forEach((it,i)=>{
+    const li=host.querySelector('li[data-i="'+i+'"]'); li.classList.add('checked');
+    it.c.forEach((c,j)=>{
+      const k=ckKey(id,i,j), v=S.a[k], ok=evalCtrl(c,v); m++; if(ok)s++;
+      if(c.k==='radio'||c.k==='check'){
+        li.querySelectorAll('.opts[data-k="'+k+'"] .opt').forEach(b=>{const n=+b.dataset.i;b.classList.remove('ok','bad','right');
+          const chosen=c.k==='check'?(Array.isArray(v)&&v.includes(n)):(v!=null&&v!==''&&+v===n), isAns=c.k==='check'?c.ans.includes(n):n===c.ans;
+          if(chosen)b.classList.add(isAns?'ok':'bad'); else if(isAns)b.classList.add('right');});
+      } else { const el=li.querySelector('[data-key="'+k+'"]'); el.classList.remove('ok','bad'); el.classList.add(ok?'ok':'bad'); }
+    });
+  });
+  S.sc[id]={s,m}; S.ck[id]=true; save();
+  const fb=host.querySelector('.fb'); showFb(fb,s,m);
+  if(user){if(s/m>=.8)confetti(fb);toast('Score: '+s+' / '+m);}
+  updateProgress();
+}
+function showFb(fb,s,m){const r=m?s/m:0;fb.className='fb show '+(r>=.8?'good':r>=.5?'mid':'low');fb.textContent=(r>=.8?'🎉 Staat je goed! ':r>=.5?'👍 Bijna op maat: ':'🧵 Nog wat bijstikken: ')+s+' / '+m;}
+
+/* ================= SURVEY ================= */
+const SV=['thuis met je ouders','met je grootouders','met je vrienden in het weekend','in een chat met je klasgroep','op school met je klasgenoten','in de les met je leerkracht','met de directeur','met je teamgenoten bij je hobby of sport','tijdens een doktersafspraak','een onbekende de weg vragen in een andere stad','tijdens een sollicitatiegesprek voor een studentenjob','met een onbekende die jouw eigen dialect spreekt'];
+const SVO=[['AN','#2f5d8a'],['TT','#e3a92b'],['D','#6f9e7d'],['AT','#8a5a9e']];
+function drawSurvey(){
+  let h='<tr><th style="text-align:left">Situatie</th>'+SVO.map(o=>'<th>'+o[0]+'</th>').join('')+'</tr>';
+  SV.forEach((s,i)=>{h+='<tr><td>'+s+'</td>'+SVO.map((o,n)=>'<td class="c"><button class="sv" data-r="'+i+'" data-n="'+n+'" aria-label="'+s+': '+o[0]+'">'+o[0]+'</button></td>').join('')+'</tr>';});
+  $('#survey').innerHTML=h;
+  const paint=()=>$$('#survey .sv').forEach(b=>{const on=S.a['sv.'+b.dataset.r]===+b.dataset.n;b.classList.toggle('on',on);b.style.background=on?SVO[+b.dataset.n][1]:'';});
+  $$('#survey .sv').forEach(b=>b.onclick=()=>{S.a['sv.'+b.dataset.r]=+b.dataset.n;save();paint();});
+  paint(); if(S.ck.survey) svResult(false);
+}
+function svCounts(){const c=[0,0,0,0];SV.forEach((s,i)=>{const v=S.a['sv.'+i];if(v!=null)c[v]++;});return c;}
+function svChartSVG(){
+  const c=svCounts(), max=SV.length, W=520, bw=90;
+  let g='<svg viewBox="0 0 '+W+' 230" width="100%" style="max-width:560px" role="img" aria-label="Grafiek van je taalgebruik">';
+  SVO.forEach((o,n)=>{const x=30+n*(bw+35), hgt=c[n]/max*160, y=190-hgt;
+    g+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+Math.max(hgt,2)+'" rx="8" fill="'+o[1]+'"/><text x="'+(x+bw/2)+'" y="'+(y-8)+'" text-anchor="middle" font-weight="800" font-size="18" fill="#1f2a44">'+c[n]+'</text><text x="'+(x+bw/2)+'" y="215" text-anchor="middle" font-weight="700" font-size="15" fill="#1f2a44">'+['standaardtaal','tussentaal','dialect','andere taal'][n]+'</text>';});
+  return g+'<line x1="20" y1="190" x2="'+(W-10)+'" y2="190" stroke="#c9bfae" stroke-width="2"/></svg>';
+}
+function svResult(user){
+  const c=svCounts(), filled=c.reduce((a,b)=>a+b,0);
+  if(user&&filled<SV.length){toast('Vul nog '+(SV.length-filled)+' situatie(s) in');}
+  S.sc.survey={s:filled,m:SV.length}; if(filled===SV.length)S.ck.survey=true; save();
+  const top=c.indexOf(Math.max(...c));
+  $('#svChart').innerHTML=svChartSVG()+'<p><strong>Jouw meest gedragen taal:</strong> '+['standaardtaal','tussentaal','dialect','een andere taal'][top]+'. Zoals bijna iedereen wissel jij van taal naargelang de situatie. Dat is geen zwakte maar een vaardigheid!</p>';
+  showFb($('#svFb'),filled,SV.length); updateProgress();
+}
+
+/* ================= SLIDER ================= */
+const SLIDE=[
+ ['Èt gie mn velo gezien? ’k En kan ’n nievers vinden.','Dialect (West-Vlaams getint): heel lokaal, met eigen klanken en woorden. Buiten de streek moeilijk te volgen.'],
+ ['Èdde gij mijne velo gezien? ’k Kan ’m nievers vinden.','Regiolect: de scherpste dialectkenmerken zijn weg, maar je hoort nog uit welke streek de spreker komt.'],
+ ['Hebde gij mijne velo gezien? ’k Kan ’m nergens vinden.','Tussentaal: de informele omgangstaal van veel Vlamingen, met ge/gij, mijnen en weggevallen klanken.'],
+ ['Heb jij mijn fiets gezien? Ik kan hem nergens vinden.','Standaardtaal: overal in het taalgebied te begrijpen. De taal van het journaal, de krant en de klas.']
+];
+function drawSlide(){const v=+$('#slide').value;$('#say').textContent='“'+SLIDE[v][0]+'”';$('#sayDesc').textContent=SLIDE[v][1];$$('.slider .ticks span').forEach((s,i)=>s.classList.toggle('on',i===v));}
+
+/* ================= ORDER ================= */
+const ORD=['dialect','regiolect','tussentaal','standaardtaal'];
+function drawOrder(){
+  if(!Array.isArray(S.a.order))S.a.order=['tussentaal','standaardtaal','dialect','regiolect'];
+  const o=S.a.order;
+  $('#order').innerHTML=o.map((t,i)=>'<li class="'+(S.ck.order?(ORD[i]===t?'ok':'bad'):'')+'"><span class="n">'+(i+1)+'</span><span class="t">'+t+'</span><button aria-label="omhoog" data-u="'+i+'">↑</button><button aria-label="omlaag" data-d="'+i+'">↓</button></li>').join('');
+  $$('#order [data-u]').forEach(b=>b.onclick=()=>{const i=+b.dataset.u;if(i>0){[o[i-1],o[i]]=[o[i],o[i-1]];save();drawOrder();}});
+  $$('#order [data-d]').forEach(b=>b.onclick=()=>{const i=+b.dataset.d;if(i<o.length-1){[o[i+1],o[i]]=[o[i],o[i+1]];save();drawOrder();}});
+}
+function checkOrder(user){let s=0;S.a.order.forEach((t,i)=>{if(ORD[i]===t)s++;});S.sc.order={s,m:4};S.ck.order=true;save();drawOrder();showFb($('#orderFb'),s,4);if(user){if(s===4)confetti($('#orderFb'));toast('Score: '+s+' / 4');}updateProgress();}
+
+/* ================= DETECTIVE ================= */
+const DLG=[
+ ['J','Hé Senne, [[hebde gij|zinsbouw|heb jij]] [[da|uitspraak|dat]] al gehoord van Lotte?'],
+ ['S','Nee, [[wa|uitspraak|wat]] is er gebeurd?'],
+ ['J','Ze heeft [[ne|woordvorm|een]] nieuwe job! Ze begint maandag in [[dienen|woordvorm|die]] winkel op de markt.'],
+ ['S','Amai, da’s [[eel|uitspraak|heel]] [[schoon|woordenschat|mooi]]! [[Zijde gij|zinsbouw|Ben jij]] [[nie|uitspraak|niet]] jaloers?'],
+ ['J','Ik? [[Bijlange niet|woordenschat|Lang niet]]. Ik heb al [[mijnen|woordvorm|mijn]] eigen studentenjob.'],
+ ['S','[[Ge zijt|woordvorm|Je bent]] echt [[ne goeie|woordvorm|een goede]] [[maat|woordenschat|vriend]], [[zenne|woordenschat|hoor]].']
+];
+let TOK=[];
+function drawDialog(){
+  TOK=[]; let h='';
+  DLG.forEach(([w,t])=>{
+    const html=t.replace(/\[\[(.+?)\|(.+?)\|(.+?)\]\]/g,(m,a,c,st)=>{const i=TOK.length;TOK.push({t:a,c,st});return '<button type="button" class="tok" data-t="'+i+'">'+a+'</button>';});
+    h+='<div class="line"><span class="who2" style="background:'+(w==='J'?'var(--tomato)':'var(--denim)')+'">'+(w==='J'?'Jana':'Senne').slice(0,1)+'</span><div class="bubble"><b>'+(w==='J'?'Jana':'Senne')+':</b> '+html+'</div></div>';
+  });
+  $('#dialog').innerHTML=h; paintTok();
+  $$('#dialog .tok').forEach(b=>b.onclick=e=>{e.stopPropagation();openPop(b);});
+}
+function paintTok(){$$('#dialog .tok').forEach(b=>{const i=+b.dataset.t,v=S.a['det.'+i];if(v){b.dataset.c=v;b.innerHTML=TOK[i].t+'<sup>'+v.slice(0,3)+'</sup>';}else{delete b.dataset.c;b.textContent=TOK[i].t;}
+  b.classList.remove('ok','bad');if(S.ck.det&&v)b.classList.add(v===TOK[i].c?'ok':'bad');b.title=S.ck.det?'Standaardtaal: '+TOK[i].st:'';});}
+let popFor=null;
+function openPop(b){popFor=+b.dataset.t;const p=$('#pop'),r=b.getBoundingClientRect();p.classList.add('show');
+  let x=r.left, y=r.bottom+6; const pw=200, ph=190; if(x+pw>innerWidth-8)x=innerWidth-pw-8; if(y+ph>innerHeight-8)y=r.top-ph-6; p.style.left=(x+scrollX)+'px'; p.style.top=(y+scrollY)+'px';}
+function checkDet(user){let s=0;TOK.forEach((t,i)=>{if(S.a['det.'+i]===t.c)s++;});S.sc.det={s,m:TOK.length};S.ck.det=true;save();paintTok();showFb($('#detFb'),s,TOK.length);if(user){if(s/TOK.length>=.8)confetti($('#detFb'));toast('Score: '+s+' / '+TOK.length+' · Ga met je muis over een woord voor de standaardtaal');}updateProgress();}
+
+/* ================= MAIL CHECKLIST ================= */
+const MC=['Mijn onderwerpregel zegt kort en duidelijk waarover de mail gaat.','Ik gebruik een gepaste aanhef (bv. Geachte mevrouw de directeur).','Ik stel mezelf kort voor (naam en klas).','Mijn vraag staat duidelijk in de eerste alinea.','Ik geef minstens twee argumenten.','Ik schrijf in standaardtaal: geen ge/gij, da, nie of andere tussentaal.','Ik gebruik u en een beleefde toon.','Ik sluit af met een beleefde slotzin, groet, naam en klas.','Ik heb mijn mail nagelezen op spelling en dt-fouten.'];
+function drawMC(){$('#mailcheck').innerHTML=MC.map((t,i)=>'<label><input type="checkbox" data-m="'+i+'"'+(S.a['mc.'+i]?' checked':'')+'><span>'+t+'</span></label>').join('');
+  $$('#mailcheck input').forEach(c=>c.onchange=()=>{S.a['mc.'+c.dataset.m]=c.checked;save();});
+  if(S.ck.mailcheck)showFb($('#mcFb'),S.sc.mailcheck.s,S.sc.mailcheck.m);}
+function checkMC(user){const body=S.a['mail.1.0']||'';if(user&&words(body)<20){toast('Schrijf eerst je mail ✍️');return;}let s=0;MC.forEach((t,i)=>{if(S.a['mc.'+i])s++;});S.sc.mailcheck={s,m:MC.length};S.ck.mailcheck=true;save();showFb($('#mcFb'),s,MC.length);if(user)toast(s===MC.length?'Netjes gestreken! 👔':'Pas aan wat nog niet in orde is');updateProgress();}
+
+/* ================= NAV + PROGRESS ================= */
+function stationDone(st){if(st.id==='start')return !!S.name.trim();if(st.id==='score')return STATIONS.slice(0,-1).every(stationDone);return st.req.every(r=>S.ck[r]);}
+function buildRack(){
+  const r=$('#rack');
+  STATIONS.forEach((st,i)=>{const b=document.createElement('button');b.className='hanger';b.style.setProperty('--c',st.color);b.title=st.short;b.setAttribute('aria-label',st.short);
+    b.innerHTML='<svg width="44" height="58" viewBox="0 0 44 58" aria-hidden="true"><path d="M22 3a4 4 0 1 1 4 4c-2 0-4 1.5-4 3.5V14" fill="none" stroke="#6b6458" stroke-width="2.4" stroke-linecap="round"/><path d="M22 14 6 22h32z" fill="none" stroke="#6b6458" stroke-width="2.4" stroke-linejoin="round"/><path class="shirt" d="M8 23 16 21q6 5 12 0l8 2 5 10-6 3v19H9V36l-6-3z"/><text class="tick" x="22" y="44" text-anchor="middle">'+(i===0?'★':i===STATIONS.length-1?'🪞':i)+'</text></svg><span class="lbl">'+st.short+'</span>';
+    b.onclick=()=>go(i); r.appendChild(b);});
+}
+function updateProgress(){
+  let done=0; STATIONS.forEach((st,i)=>{const d=stationDone(st);if(d&&i<STATIONS.length-1)done++;$$('.hanger')[i].classList.toggle('done',d);});
+  const pct=Math.round(done/(STATIONS.length-1)*100); $('#progFill').style.width=pct+'%'; $('#progTxt').textContent=pct+'%';
+  $('#who').innerHTML=S.name?'<b>'+esc(S.name)+'</b>'+(S.klas?' · '+esc(S.klas):''):'';
+  if(STATIONS[S.cur]&&STATIONS[S.cur].id==='score')drawScore();
+}
+function go(i){i=Math.max(0,Math.min(STATIONS.length-1,i));S.cur=i;save();
+  $$('section.station').forEach((s,n)=>s.classList.toggle('on',n===i)); $$('.hanger').forEach((h,n)=>h.classList.toggle('cur',n===i));
+  if(STATIONS[i].id==='score')drawScore(); window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ================= SCORE + REPORT ================= */
+const FIXED={survey:12,order:4,det:15,mailcheck:9};
+const maxOf=id=>FIXED[id]||(B[id]?B[id].items.reduce((t,it)=>t+it.c.length,0):0);
+function stScore(st){let s=0,m=0;st.req.forEach(r=>{if(S.sc[r])s+=S.sc[r].s;m+=maxOf(r);});return {s,m};}
+function drawScore(){
+  let T=0,M=0,rows='<tr><th>Station</th><th>Score</th><th></th><th>Status</th></tr>';
+  STATIONS.filter(st=>st.req.length).forEach(st=>{const {s,m}=stScore(st);T+=s;M+=m;const p=m?Math.round(s/m*100):0,started=st.req.some(r=>S.ck[r]);
+    rows+='<tr><td><b>'+st.title+'</b></td><td>'+(started?s:'–')+' / '+m+'</td><td><div class="minibar"><i style="width:'+p+'%;background:'+st.color+'"></i></div></td><td>'+(stationDone(st)?'<span class="pill g">afgewerkt</span>':'<span class="pill n">nog open</span>')+'</td></tr>';});
+  rows+='<tr><td><b>Totaal</b></td><td><b>'+T+' / '+M+'</b></td><td></td><td></td></tr>'; $('#scoreTbl').innerHTML=rows;
+  const p=M?Math.round(T/M*100):0, ex=S.sc.exit;
+  const title=p>=85?'Taalcouturier ✂️':p>=65?'Stijlexpert 👗':p>=40?'Goed op weg in de paskamer 🧥':'Net binnengewandeld 🛍️';
+  $('#badge').innerHTML='<div class="big">'+p+'%</div><div><div style="font-family:var(--h);font-size:25px;font-weight:800">'+title+'</div><div style="opacity:.85">'+(S.name?esc(S.name)+' · ':'')+'Totaal '+T+' / '+M+(ex?' · Exit ticket '+ex.s+' / '+ex.m:'')+'</div></div>';
+  const open=STATIONS.filter(st=>st.req.length&&!stationDone(st)).map(st=>st.short);
+  $('#missing').textContent=open.length?'Nog niet afgewerkt: '+open.join(', ')+'. Je kunt toch al exporteren.':'';
+}
+function ansText(c,v){if(c.k==='radio')return v!=null&&v!==''?strip(c.opts[+v]):'—';if(c.k==='check')return Array.isArray(v)&&v.length?v.map(i=>strip(c.opts[i])).join(', '):'—';return v&&String(v).trim()?esc(v):'—';}
+function correctText(c){return c.k==='text'?c.acc[0]:c.k==='sel'?c.ans:c.k==='radio'?strip(c.opts[c.ans]):c.ans.map(x=>strip(c.opts[x])).join(', ');}
+function blockReport(id,title){
+  let h=title?'<h3>'+title+'</h3>':'';
+  B[id].items.forEach((it,i)=>{const pr=strip(it.p.replace(/\{\d\}/g,'___'));
+    const ans=it.c.map((c,j)=>{const v=S.a[ckKey(id,i,j)];const mk=S.ck[id]?(c.k==='open'?(evalCtrl(c,v)?' ✓':' (te kort)'):(evalCtrl(c,v)?' ✓':' ✗ (juist: '+correctText(c)+')')):'';return ansText(c,v)+mk;}).join(' · ');
+    h+='<div class="q"><b>'+(i+1)+'.</b> '+esc(pr)+'<div class="a">→ '+ans+'</div></div>';});
+  if(S.sc[id])h+='<p><i>Score: '+S.sc[id].s+' / '+S.sc[id].m+'</i></p>'; return h;
+}
+function buildReport(){
+  const d=new Date().toLocaleDateString('nl-BE',{day:'numeric',month:'long',year:'numeric'});
+  let h='<h1>Taalgarderobe – mijn werk</h1><p><b>Naam:</b> '+esc(S.name||'—')+' &nbsp; <b>Klas:</b> '+esc(S.klas||'—')+' &nbsp; <b>Datum:</b> '+d+'</p><h2>Scorelijst</h2><table><tr><th>Station</th><th>Score</th></tr>';
+  let T=0,M=0; STATIONS.filter(st=>st.req.length).forEach(st=>{const {s,m}=stScore(st);T+=s;M+=m;h+='<tr><td>'+st.title+'</td><td>'+(st.req.some(r=>S.ck[r])?s+' / '+m:'niet gemaakt (max. '+m+')')+'</td></tr>';});
+  h+='<tr><td><b>Totaal</b></td><td><b>'+T+' / '+M+'</b></td></tr></table>';
+  h+='<h2>1 · Mijn taalspiegel</h2><table><tr><th>Situatie</th><th>Mijn taal</th></tr>'+SV.map((s,i)=>{const v=S.a['sv.'+i];return '<tr><td>'+s+'</td><td>'+(v==null?'—':['standaardtaal','tussentaal','dialect','andere taal'][v])+'</td></tr>';}).join('')+'</table>'+svChartSVG()+blockReport('portret','Taalportret');
+  h+='<h2>2 · Zelfde boodschap, ander jasje</h2>'+blockReport('jasjeA','A. Wie, tegen wie, waar?')+blockReport('dim','B. Soort variatie')+blockReport('creatief','C. Mismatch en undercover');
+  h+='<h2>3 · De taalschuif</h2><h3>A. Continuüm</h3><p>'+(S.a.order||[]).map(esc).join(' → ')+(S.sc.order?' <i>(score '+S.sc.order.s+' / 4)</i>':'')+'</p>'+blockReport('nadeel','B. Nadelen van dialect')+blockReport('lees3','C. Leestest')+blockReport('interview','D. Interview: de grote dialecttest')+blockReport('sum3','E. Samenvatting');
+  h+='<h2>4 · Tussentaal-lab</h2><h3>A. Detective</h3><table><tr><th>Tussentaal</th><th>Mijn keuze</th><th>Juist</th><th>Standaardtaal</th></tr>'+TOK.map((t,i)=>{const v=S.a['det.'+i];return '<tr><td>'+t.t+'</td><td>'+(v||'—')+(S.ck.det?(v===t.c?' ✓':' ✗'):'')+'</td><td>'+t.c+'</td><td>'+t.st+'</td></tr>';}).join('')+'</table>'+(S.sc.det?'<p><i>Score: '+S.sc.det.s+' / '+S.sc.det.m+'</i></p>':'')+blockReport('thuis','B. Tussentaal in Thuis')+blockReport('omzet','C. Omzetten naar standaardtaal');
+  h+='<h2>5 · Noord & Zuid</h2>'+blockReport('bn','A. België of Nederland?')+blockReport('bnq','B. Pluricentrisch en podcast');
+  h+='<h2>6 · Norm, werkelijkheid, gevoel</h2>'+blockReport('t1','Casus 1: groter als/dan')+blockReport('t2','Casus 2: hun hebben')+blockReport('t3','Casus 3: ge/gij of je/jij');
+  h+='<h2>7 · Het juiste pak</h2>'+blockReport('pakA','A. Welke formulering past?')+'<h3>B. Mijn mail aan de directie</h3><p><b>Onderwerp:</b> '+esc(S.a['mail.0.0']||'—')+'</p><div class="q"><div class="a">'+esc(S.a['mail.1.0']||'—')+'</div></div><p><i>'+words(S.a['mail.1.0'])+' woorden</i></p><h3>C. Zelfevaluatie</h3><table>'+MC.map((t,i)=>'<tr><td>'+t+'</td><td>'+(S.a['mc.'+i]?'✓':'✗')+'</td></tr>').join('')+'</table>';
+  h+='<h2>8 · Debat</h2>'+blockReport('deb','A. Leestest')+blockReport('bev','B. Bevergem')+blockReport('stand','C. Mijn standpunt');
+  h+='<h2>9 · Speurtocht</h2>'+blockReport('webq','');
+  h+='<h2>10 · Exit ticket</h2>'+blockReport('exit','');
+  $('#report').innerHTML=h;
+}
+
+/* ================= FX ================= */
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2400);}
+function confetti(el){const r=el.getBoundingClientRect(),cols=['#2f5d8a','#e3a92b','#e0533d','#6f9e7d','#8a5a9e','#2a9d9b'];
+  for(let i=0;i<26;i++){const c=document.createElement('span');c.className='conf';c.style.left=(r.left+r.width/2)+'px';c.style.top=(r.top+r.height/2)+'px';c.style.background=cols[i%6];
+    c.style.setProperty('--dx',(Math.random()*260-130)+'px');c.style.setProperty('--dy',(Math.random()*-220-40)+'px');c.style.setProperty('--rot',(Math.random()*720)+'deg');document.body.appendChild(c);setTimeout(()=>c.remove(),1200);}}
+
+/* ================= INIT ================= */
+function init(){
+  buildRack();
+  $('#inName').value=S.name;$('#inKlas').value=S.klas;
+  $('#inName').oninput=e=>{S.name=e.target.value;save();updateProgress();};
+  $('#inKlas').oninput=e=>{S.klas=e.target.value;save();updateProgress();};
+  Object.keys(B).forEach(renderBlock);
+  drawSurvey(); $('#svCheck').onclick=()=>svResult(true);
+  $('#slide').oninput=drawSlide; drawSlide();
+  drawOrder(); $('#orderCheck').onclick=()=>checkOrder(true); if(S.ck.order)checkOrder(false);
+  drawDialog(); $('#detCheck').onclick=()=>checkDet(true); if(S.ck.det)checkDet(false);
+  $$('#pop button').forEach(b=>b.onclick=e=>{e.stopPropagation();if(popFor!=null){S.a['det.'+popFor]=b.dataset.c;save();paintTok();}$('#pop').classList.remove('show');});
+  document.addEventListener('click',e=>{if(!e.target.closest('#pop'))$('#pop').classList.remove('show');});
+  drawMC(); $('#mcCheck').onclick=()=>checkMC(true);
+  $$('[data-next]').forEach(b=>b.onclick=()=>{if(STATIONS[S.cur].id==='start'&&!S.name.trim()){toast('Vul eerst je naam in ✍️');$('#inName').focus();return;}go(S.cur+1);});
+  $$('[data-prev]').forEach(b=>b.onclick=()=>go(S.cur-1));
+  $('#exportBtn').onclick=()=>{buildReport();setTimeout(()=>window.print(),150);};
+  $('#resetBtn').onclick=()=>{if(confirm('Ben je zeker? Al je antwoorden worden gewist.')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}};
+  go(S.cur||0); updateProgress();
+}
+init();
+</script>
+</body>
+</html>
